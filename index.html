@@ -347,16 +347,14 @@
  .email-btn:hover {
  background-color: var(--purple-hover);
  }
- /* --- ADS / PUBLICIDADE --- */
+
+ /* --- ADS / PUBLICIDADE (AJUSTADO) --- */
  .ad-container {
- background: #f1f5f9;
- border: 1px dashed #cbd5e1;
- border-radius: var(--radius-lg);
- padding: 15px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 15px auto;
  text-align: center;
- margin: 15px 0;
- color: #94a3b8;
- font-size: 0.8rem;
  overflow: hidden;
  }  
  .grid-full-width {
@@ -364,17 +362,29 @@
  }
  .ad-slot-header {
  max-width: 1200px;
- margin: 10px auto 0 auto;
+ margin: 15px auto;
  padding: 0 20px;
+ display: flex;
+ justify-content: center;
  }
  .ad-box {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- gap: 4px;
- min-height: 90px;
+ display: inline-block;
+ text-align: center;
+ background: #ffffff;
+ border: 1px solid #e2e8f0;
+ border-radius: 8px;
+ padding: 8px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.04);
  }
+ .ad-box small {
+ display: block;
+ margin-bottom: 4px;
+ color: #94a3b8;
+ font-size: 0.7rem;
+ font-weight: 600;
+ letter-spacing: 0.5px;
+ }
+
  /* --- SIDEBAR --- */
  .sidebar {
  display: flex;
@@ -388,6 +398,9 @@
  padding: 20px;
  box-shadow: var(--shadow-card);
  }
+ .widget-ad {
+ padding: 10px;
+ }
  .widget-title {
  font-size: 1.05rem;  
  font-weight: 700;
@@ -400,6 +413,7 @@
  font-size: 0.85rem;
  color: var(--text-muted);
  }
+
  /* --- FOOTER --- */
  footer {
  background-color: #0f172a;
@@ -471,10 +485,8 @@
 
  <!-- ESPAÇO DE ANÚNCIO SUPERIOR (728x90) -->
  <div class="ad-slot-header">
- <div class="ad-container">
  <div class="ad-box">
- <small style="display:block; margin-bottom: 4px;">PUBLICIDADE</small>
- <!-- BANNER 728x90 ADSTERRA -->
+ <small>PUBLICIDADE</small>
  <script>
   atOptions = {
     'key' : '5c4c40b200bb1077ecf32b4181b9f16f',
@@ -486,7 +498,6 @@
  </script>
  <script src="https://www.highperformanceformat.com/5c4c40b200bb1077ecf32b4181b9f16f/invoke.js"></script>
  </div>
- </div>  
  </div>
 
  <!-- BLOCO HERO DE BUSCA -->
@@ -583,8 +594,7 @@
  <!-- ESPAÇO DE ANÚNCIO INTERCALADO (300x250) -->
  <div class="ad-container grid-full-width">
  <div class="ad-box">
- <small style="display:block; margin-bottom: 4px;">PUBLICIDADE</small>
- <!-- BANNER 300x250 ADSTERRA -->
+ <small>PUBLICIDADE</small>
  <script>
   atOptions = {
     'key' : 'cec4c9b1c0036a26016140e960d2cc93',
@@ -643,7 +653,7 @@
  </div>
  </section>
 
- <!-- SEÇÃO POLÍTICA DE PRIVACIDADE REVISADA -->
+ <!-- SEÇÃO POLÍTICA DE PRIVACIDADE -->
  <section id="privacySection" class="content-block">
  <h1 class="page-title">Política de Privacidade</h1>  
  <p class="text-body"><strong>Política de Privacidade do Oportunidadesvagasbr</strong></p>
@@ -719,10 +729,9 @@
  <aside class="sidebar">
  <!-- WIDGET DE ANÚNCIO LATERAL (300x250) -->
  <div class="widget widget-ad">
- <div class="ad-container" style="margin:0;">
+ <div class="ad-container">
  <div class="ad-box">
- <small style="display:block; margin-bottom: 4px;">PUBLICIDADE</small>
- <!-- BANNER 300x250 ADSTERRA -->
+ <small>PUBLICIDADE</small>
  <script>
   atOptions = {
     'key' : 'cec4c9b1c0036a26016140e960d2cc93',
