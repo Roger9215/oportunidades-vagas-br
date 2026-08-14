@@ -1,836 +1,880 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Portal Oportunidades - Vagas de Emprego</title>
- <meta name="description" content="O portal de vagas de emprego mais completo do Brasil.">
- <style>
- /* --- VARIÁVEIS E RESET GLOBAIS --- */
- :root {
- --purple-main: #6b21a8;
- --purple-dark: #581c87;
- --purple-light: #f3e8ff;
- --purple-hover: #4c1d95;
- --bg-gray: #f8fafc;
- --card-bg: #ffffff;
- --text-dark: #1e293b;
- --text-muted: #64748b;
- --border-color: #e2e8f0;
- --radius-lg: 12px;
- --radius-sm: 6px;
- --shadow-card: 0 4px 12px rgba(0,0,0,0.05);
- }
- * {
- box-sizing: border-box;
- margin: 0;
- padding: 0;
- font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;  
- }
- body {
- background-color: var(--bg-gray);
- color: var(--text-dark);
- line-height: 1.6;
- }
- /* --- BARRA DE AVISO --- */
- .disclaimer-bar {
- background-color: #0f172a;
- color: #94a3b8;
- font-size: 0.8rem;
- text-align: center;
- padding: 6px 12px;
- }
- .disclaimer-bar strong {
- color: #f8fafc;
- }
- /* --- CABEÇALHO / HEADER --- */ 
- header {
- background: #ffffff;
- border-bottom: 1px solid var(--border-color);
- position: sticky;
- top: 0;
- z-index: 100;
- }
- .header-container {
- max-width: 1200px;
- margin: 0 auto;  
- padding: 14px 20px;
- display: flex;
- justify-content: space-between;
- align-items: center;
- }
- .logo {
- font-size: 1.5rem;
- font-weight: 800;
- color: var(--purple-main);
- text-decoration: none;
- letter-spacing: -0.5px;
- cursor: pointer;
- }
- .logo span {
- font-weight: 400;
- color: #334155;
- }
- nav {
- display: flex;
- gap: 10px;
- align-items: center;
- flex-wrap: wrap;
- }
- .nav-btn {
- text-decoration: none;
- color: var(--text-dark);
- font-weight: 600;
- font-size: 0.88rem;
- padding: 6px 12px;
- border-radius: 20px;
- transition: all 0.2s;  
- cursor: pointer;
- border: none;
- background: transparent;
- }
- .nav-btn:hover, .nav-btn.active {
- color: var(--purple-main);
- background-color: var(--purple-light);
- }
- /* --- BOTÃO SEGUIR (WHATSAPP) --- */
- .btn-follow {
- background-color: #25d366;
- color: white;
- font-weight: 700;
- font-size: 0.88rem;
- padding: 8px 18px;
- border-radius: 20px;
- text-decoration: none;
- display: inline-flex;
- align-items: center;
- gap: 6px;
- transition: transform 0.2s, background-color 0.2s;
- box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
- }
- .btn-follow:hover {
- background-color: #1eb954;
- transform: translateY(-1px);
- }
- /* --- HERO / BUSCA --- */
- .hero-solides {  
- background-color: var(--purple-main);
- background-image: radial-gradient(circle at top right, #7e22ce, var(--purple-main));
- color: white;
- padding: 45px 20px 65px 20px;
- text-align: center; 
- }
- .hero-content {
- max-width: 900px;
- margin: 0 auto;
- }
- .hero-solides h1 {
- font-size: 2rem;
- font-weight: 700;
- margin-bottom: 25px;
- }
- .hero-solides h1 span {
- opacity: 0.95;
- font-weight: 800;
- }
- .search-card {
- background: #ffffff;
- border-radius: var(--radius-lg);
- padding: 20px;
- box-shadow: 0 10px 25px rgba(0,0,0,0.15);
- display: grid;
- grid-template-columns: 1fr 1fr 160px;
- gap: 15px;
- align-items: flex-end;
- text-align: left;
- }
- @media (max-width: 768px) {  
- .search-card {
- grid-template-columns: 1fr;
- }
- }
- .input-group label {
- display: block;
- font-size: 0.8rem;
- font-weight: 700;
- color: #475569;
- margin-bottom: 6px;
- }
- .input-group input {
- width: 100%;
- padding: 10px 14px;
- border: 1px solid var(--border-color);
- border-radius: var(--radius-sm);
- outline: none;
- font-size: 0.9rem;
- }
- .btn-search {
- background-color: var(--purple-dark);
- color: white;
- border: none;
- padding: 12px 20px;
- border-radius: var(--radius-sm);
- font-weight: 700;
- cursor: pointer;
- transition: background 0.2s;
- height: 42px;
- }
- .btn-search:hover {  
- background-color: var(--purple-hover);
- } 
- /* --- LAYOUT PRINCIPAL --- */
- .main-layout {
- max-width: 1200px;
- margin: 30px auto;
- padding: 0 20px;
- display: grid;
- grid-template-columns: 1fr 300px;
- gap: 30px;
- }
- @media (max-width: 900px) {
- .main-layout {
- grid-template-columns: 1fr;
- }
- }
- /* --- CARDS DE VAGAS --- */
- .list-header {
- display: flex;
- justify-content: space-between;
- align-items: center;
- margin-bottom: 20px;
- }
- .list-header h2 {
- font-size: 1.4rem;
- color: var(--text-dark);
- font-weight: 800;
- }
- .vagas-count {  
- font-size: 0.85rem;
- color: var(--text-muted);
- }
- .jobs-grid {
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
- gap: 20px;
- }
- .job-card {
- background: var(--card-bg); 
- border: 1px solid var(--border-color);
- border-radius: var(--radius-lg);
- box-shadow: var(--shadow-card);
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- overflow: hidden;
- transition: transform 0.2s, box-shadow 0.2s;
- }
- .job-card:hover {
- transform: translateY(-3px);
- box-shadow: 0 8px 20px rgba(0,0,0,0.08);
- }
- .card-body {
- padding: 20px;
- }
- .company-name {
- font-size: 0.75rem;
- font-weight: 800;
- color: var(--text-muted);
- letter-spacing: 0.5px;  
- }
- .badge-purple {
- color: var(--purple-main);
- }
- .job-title {
- font-size: 1.1rem;
- font-weight: 700;
- color: var(--text-dark);
- margin: 8px 0;
- }
- .job-location {
- font-size: 0.85rem;
- color: var(--text-muted);
- margin-bottom: 12px;
- }
- .job-tags {
- display: flex;
- flex-wrap: wrap;
- gap: 6px;
- margin-bottom: 15px;
- }
- .tag {
- background-color: #f1f5f9;
- color: #475569;
- font-size: 0.75rem;
- padding: 3px 8px;
- border-radius: 4px;
- font-weight: 600;
- }
- .tag-purple {
- background-color: var(--purple-light);  
- color: var(--purple-main);
- }
- .post-date {
- display: block;
- font-size: 0.75rem;
- color: #94a3b8;
- }
- .btn-details { 
- display: block;
- background-color: var(--purple-dark);
- color: white;
- text-align: center;
- text-decoration: none;
- font-weight: 700;
- padding: 12px 0;
- font-size: 0.9rem;
- transition: background-color 0.2s;
- }
- .btn-details:hover {
- background-color: var(--purple-hover);
- }
- /* --- SEÇÕES INSTITUCIONAIS --- */
- .content-block {
- display: none;
- background: #ffffff;
- border: 1px solid var(--border-color);
- border-radius: var(--radius-lg);
- padding: 30px;
- box-shadow: var(--shadow-card);
- }  
- .page-title {
- color: var(--purple-main);
- font-size: 1.8rem;
- margin-bottom: 15px;
- font-weight: 800;
- border-bottom: 3px solid var(--purple-main);
- padding-bottom: 8px;
- }
- .section-subtitle {
- font-size: 1.15rem;
- font-weight: 700;
- color: var(--purple-dark);
- margin: 20px 0 10px 0;
- }
- .text-body {
- font-size: 0.95rem;
- line-height: 1.7;
- color: #334155;
- margin-bottom: 15px;
- }
- .text-list {
- margin-left: 20px;
- margin-bottom: 15px;
- color: #334155;
- font-size: 0.95rem;
- }
- .text-list li {
- margin-bottom: 6px;
- }
- .contact-box {
- background-color: var(--bg-gray);  
- border-left: 4px solid var(--purple-main);
- border-radius: 8px;
- padding: 20px;
- margin-top: 25px;
- }
- .email-btn {
- display: inline-block;
- margin-top: 12px;
- color: white;
- background-color: var(--purple-main);
- padding: 10px 18px;
- text-decoration: none;
- border-radius: 6px;
- font-weight: 700;
- transition: background 0.2s;
- }
- .email-btn:hover {
- background-color: var(--purple-hover);
- }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Oportunidades - Vagas de Emprego</title>
+  <meta name="description" content="O portal de vagas de emprego mais completo do Brasil.">
+  <style>
+    /* --- VARIÁVEIS E RESET GLOBAIS --- */
+    :root {
+      --purple-main: #6b21a8;
+      --purple-dark: #581c87;
+      --purple-light: #f3e8ff;
+      --purple-hover: #4c1d95;
+      --bg-gray: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --radius-lg: 12px;
+      --radius-sm: 6px;
+      --shadow-card: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;  
+    }
+    body {
+      background-color: var(--bg-gray);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    /* --- BARRA DE AVISO --- */
+    .disclaimer-bar {
+      background-color: #0f172a;
+      color: #94a3b8;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 6px 12px;
+    }
+    .disclaimer-bar strong {
+      color: #f8fafc;
+    }
+    /* --- CABEÇALHO / HEADER --- */ 
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;  
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--purple-main);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      cursor: pointer;
+    }
+    .logo span {
+      font-weight: 400;
+      color: #334155;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.2s;  
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--purple-main);
+      background-color: var(--purple-light);
+    }
+    /* --- BOTÃO SEGUIR (WHATSAPP) --- */
+    .btn-follow {
+      background-color: #25d366;
+      color: white;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s, background-color 0.2s;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+    }
+    .btn-follow:hover {
+      background-color: #1eb954;
+      transform: translateY(-1px);
+    }
+    /* --- HERO / BUSCA --- */
+    .hero-solides {  
+      background-color: var(--purple-main);
+      background-image: radial-gradient(circle at top right, #7e22ce, var(--purple-main));
+      color: white;
+      padding: 45px 20px 65px 20px;
+      text-align: center; 
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-solides h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    .hero-solides h1 span {
+      opacity: 0.95;
+      font-weight: 800;
+    }
+    .search-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: grid;
+      grid-template-columns: 1fr 1fr 160px;
+      gap: 15px;
+      align-items: flex-end;
+      text-align: left;
+    }
+    @media (max-width: 768px) {  
+      .search-card {
+        grid-template-columns: 1fr;
+      }
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .btn-search {
+      background-color: var(--purple-dark);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      height: 42px;
+    }
+    .btn-search:hover {  
+      background-color: var(--purple-hover);
+    } 
+    /* --- LAYOUT PRINCIPAL --- */
+    .main-layout {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 30px;
+    }
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* --- CARDS DE VAGAS --- */
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .list-header h2 {
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      font-weight: 800;
+    }
+    .vagas-count {  
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .job-card {
+      background: var(--card-bg); 
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .job-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .company-name {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;  
+    }
+    .badge-purple {
+      color: var(--purple-main);
+    }
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 8px 0;
+    }
+    .job-location {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 15px;
+    }
+    .tag {
+      background-color: #f1f5f9;
+      color: #475569;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .tag-purple {
+      background-color: var(--purple-light);  
+      color: var(--purple-main);
+    }
+    .post-date {
+      display: block;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .btn-details { 
+      display: block;
+      background-color: var(--purple-dark);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 0;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+    .btn-details:hover {
+      background-color: var(--purple-hover);
+    }
+    /* --- SEÇÕES INSTITUCIONAIS --- */
+    .content-block {
+      display: none;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-card);
+    }  
+    .page-title {
+      color: var(--purple-main);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 800;
+      border-bottom: 3px solid var(--purple-main);
+      padding-bottom: 8px;
+    }
+    .section-subtitle {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--purple-dark);
+      margin: 20px 0 10px 0;
+    }
+    .text-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #334155;
+      margin-bottom: 15px;
+    }
+    .text-list {
+      margin-left: 20px;
+      margin-bottom: 15px;
+      color: #334155;
+      font-size: 0.95rem;
+    }
+    .text-list li {
+      margin-bottom: 6px;
+    }
+    .contact-box {
+      background-color: var(--bg-gray);  
+      border-left: 4px solid var(--purple-main);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 25px;
+    }
+    .email-btn {
+      display: inline-block;
+      margin-top: 12px;
+      color: white;
+      background-color: var(--purple-main);
+      padding: 10px 18px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .email-btn:hover {
+      background-color: var(--purple-hover);
+    }
 
- /* --- ADS / PUBLICIDADE (AJUSTADO) --- */
- .ad-container {
- display: flex;
- justify-content: center;
- align-items: center;
- margin: 15px auto;
- text-align: center;
- overflow: hidden;
- }  
- .grid-full-width {
- grid-column: 1/-1;
- }
- .ad-slot-header {
- max-width: 1200px;
- margin: 15px auto;
- padding: 0 20px;
- display: flex;
- justify-content: center;
- }
- .ad-box {
- display: inline-block;
- text-align: center;
- background: #ffffff;
- border: 1px solid #e2e8f0;
- border-radius: 8px;
- padding: 8px;
- box-shadow: 0 2px 8px rgba(0,0,0,0.04);
- }
- .ad-box small {
- display: block;
- margin-bottom: 4px;
- color: #94a3b8;
- font-size: 0.7rem;
- font-weight: 600;
- letter-spacing: 0.5px;
- }
+    /* --- ADS / PUBLICIDADE (AJUSTADO) --- */
+    .ad-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px auto;
+      text-align: center;
+      overflow: hidden;
+    }  
+    .grid-full-width {
+      grid-column: 1/-1;
+    }
+    .ad-slot-header {
+      max-width: 1200px;
+      margin: 15px auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .ad-box {
+      display: inline-block;
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .ad-box small {
+      display: block;
+      margin-bottom: 4px;
+      color: #94a3b8;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
- /* --- SIDEBAR --- */
- .sidebar {
- display: flex;
- flex-direction: column;
- gap: 20px;
- }
- .widget {
- background: var(--card-bg);
- border: 1px solid var(--border-color);
- border-radius: var(--radius-lg);
- padding: 20px;
- box-shadow: var(--shadow-card);
- }
- .widget-ad {
- padding: 10px;
- }
- .widget-title {
- font-size: 1.05rem;  
- font-weight: 700;
- color: var(--text-dark);
- margin-bottom: 12px;
- border-bottom: 2px solid var(--purple-main); 
- padding-bottom: 6px;
- }
- .widget-desc {
- font-size: 0.85rem;
- color: var(--text-muted);
- }
+    /* --- SIDEBAR --- */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .widget {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+    .widget-ad {
+      padding: 10px;
+    }
+    .widget-title {
+      font-size: 1.05rem;  
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--purple-main); 
+      padding-bottom: 6px;
+    }
+    .widget-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
 
- /* --- FOOTER --- */
- footer {
- background-color: #0f172a;
- color: #94a3b8;
- padding: 40px 20px 20px 20px;
- margin-top: 50px;
- }
- .footer-container {
- max-width: 1200px;
- margin: 0 auto;
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
- gap: 30px;
- padding-bottom: 30px;
- border-bottom: 1px solid #1e293b;
- }
- .footer-col h3 {
- color: white;
- font-size: 1.2rem;
- margin-bottom: 15px;  
- }
- .footer-col h3 span {
- color: var(--purple-light);
- }
- .footer-links {
- list-style: none;
- }
- .footer-links li {
- margin-bottom: 8px;
- }
- .footer-links a {
- color: #94a3b8;
- text-decoration: none;
- font-size: 0.88rem;
- cursor: pointer;
- transition: color 0.2s;
- }
- .footer-links a:hover {
- color: white;
- }
- .copyright {
- text-align: center;
- font-size: 0.8rem;
- padding-top: 20px;
- color: #64748b;
- }
- </style>
+    /* --- FOOTER --- */
+    footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      padding: 40px 20px 20px 20px;
+      margin-top: 50px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .footer-col h3 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 15px;  
+    }
+    .footer-col h3 span {
+      color: var(--purple-light);
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 0.8rem;
+      padding-top: 20px;
+      color: #64748b;
+    }
+  </style>
 </head>
 <body>
- <div class="disclaimer-bar">  
- <strong>Informativo Importante:</strong> Este portal é puramente informativo. Não realizamos contratações nem cobramos valores. O cadastro é gratuito nos sites oficiais.
- </div>
- <header>
- <div class="header-container">
- <a onclick="navigateTo('jobs')" class="logo">
- <span>oportunidades</span>vagas 
- </a>
- <nav>
- <button onclick="navigateTo('jobs')" id="btnNavJobs" class="nav-btn active">Todas as vagas</button>
- <button onclick="navigateTo('about')" id="btnNavAbout" class="nav-btn">Sobre</button>
- <button onclick="navigateTo('privacy')" id="btnNavPrivacy" class="nav-btn">Política de Privacidade</button>
- 
- <a href="https://wa.me/message/LWLXRGCHSQYQI1" target="_blank" class="btn-follow">
- <span>+ Seguir Grupo</span>
- </a>
- </nav>
- </div>
- </header>
+  <div class="disclaimer-bar">  
+    <strong>Informativo Importante:</strong> Este portal é puramente informativo. Não realizamos contratações nem cobramos valores. O cadastro é gratuito nos sites oficiais.
+  </div>
+  <header>
+    <div class="header-container">
+      <a onclick="navigateTo('jobs')" class="logo">
+        <span>oportunidades</span>vagas 
+      </a>
+      <nav>
+        <button onclick="navigateTo('jobs')" id="btnNavJobs" class="nav-btn active">Todas as vagas</button>
+        <button onclick="navigateTo('about')" id="btnNavAbout" class="nav-btn">Sobre</button>
+        <button onclick="navigateTo('privacy')" id="btnNavPrivacy" class="nav-btn">Política de Privacidade</button>
+        
+        <a href="https://wa.me/message/LWLXRGCHSQYQI1" target="_blank" class="btn-follow">
+          <span>+ Seguir Grupo</span>
+        </a>
+      </nav>
+    </div>
+  </header>
 
- <!-- ESPAÇO DE ANÚNCIO SUPERIOR (728x90) -->
- <div class="ad-slot-header">
- <div class="ad-box">
- <small>PUBLICIDADE</small>
- <script>
-  atOptions = {
-    'key' : '5c4c40b200bb1077ecf32b4181b9f16f',
-    'format' : 'iframe',
-    'height' : 90,
-    'width' : 728,
-    'params' : {}
-  };
- </script>
- <script src="https://www.highperformanceformat.com/5c4c40b200bb1077ecf32b4181b9f16f/invoke.js"></script>
- </div>
- </div>
+  <!-- ESPAÇO DE ANÚNCIO SUPERIOR (728x90) -->
+  <div class="ad-slot-header">
+    <div class="ad-box">
+      <small>PUBLICIDADE</small>
+      <script>
+        atOptions = {
+          'key' : '5c4c40b200bb1077ecf32b4181b9f16f',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/5c4c40b200bb1077ecf32b4181b9f16f/invoke.js"></script>
+    </div>
+  </div>
 
- <!-- BLOCO HERO DE BUSCA -->
- <section class="hero-solides" id="heroSection">
- <div class="hero-content">
- <h1>O portal de vagas de empregos <span>mais completo do Brasil.</span></h1>
- <div class="search-card">
- <div class="input-group">
- <label>Qual vaga de emprego procura?</label>
- <input type="text" id="searchInput" placeholder="Digite o nome da vaga ou cargo (ex: Atendente, Home Office)...">
- </div>
- <div class="input-group">
- <label>Onde você procura trabalho?</label>
- <input type="text" id="locationInput" placeholder="Ex: Salvador - BA, Brasil">
- </div>
- <button class="btn-search" id="searchBtn">Buscar vagas</button>
- </div>
- </div>
- </section>
+  <!-- BLOCO HERO DE BUSCA -->
+  <section class="hero-solides" id="heroSection">
+    <div class="hero-content">
+      <h1>O portal de vagas de empregos <span>mais completo do Brasil.</span></h1>
+      <div class="search-card">
+        <div class="input-group">
+          <label>Qual vaga de emprego procura?</label>
+          <input type="text" id="searchInput" placeholder="Digite o nome da vaga ou cargo (ex: Atendente, Home Office)...">
+        </div>
+        <div class="input-group">
+          <label>Onde você procura trabalho?</label>
+          <input type="text" id="locationInput" placeholder="Ex: Salvador - BA, Brasil">
+        </div>
+        <button class="btn-search" id="searchBtn">Buscar vagas</button>
+      </div>
+    </div>
+  </section>
 
- <div class="main-layout">
- <main>
- <!-- SEÇÃO DE VAGAS -->
- <div id="jobsSection">
- <div class="list-header">
- <h2>Vagas</h2>
- <span class="vagas-count">Oportunidades em Destaque</span>
- </div>
- <div class="jobs-grid" id="jobsGrid">  
- <!-- Vaga 1 -->
- <article class="job-card" data-title="rede dor contratacao recepcionista atendimento diversos estados brasil saude hospitalar">
- <div class="card-body">
- <div class="card-brand">
- <span class="company-name">REDE D'OR</span>
- </div>
- <h3 class="job-title">Recepcionista – Diversos Estados</h3>
- <div class="job-location">📍 Vários Estados (SP, RJ, MS, BA, PE, PB, DF, MG, PA, PR, CE)</div>
- <div class="job-tags">
- <span class="tag">Efetivo (CLT)</span>
- <span class="tag">Salário Fixo</span>
- <span class="tag">Assistência Médica/Odonto</span>
- <span class="tag">Refeitório + VT</span>
- <span class="tag">Seguro de Vida</span>
- </div>
- <span class="post-date">Postada recentemente</span>
- </div>
- <a href="https://br.vagasproximas.com/2026/08/11/rede-dor-contrata-recepcionista-em-diversos-estados-do-brasil/" class="btn-details" target="_blank" rel="noopener noreferrer">
- Ver mais detalhes
- </a>
- </article>
- <!-- Vaga 2 -->
- <article class="job-card" data-title="EMPRESA DESTAK VAGAS DE EMPREGO">
- <div class="card-body">
- <div class="card-brand">
- <span class="company-name">EMPRESA DESTAK</span>  
- </div>
- <h3 class="job-title">Assessoria Jurídica</h3>
- <div class="job-location">📍 Salvador / BA | Salário Compatível</div>
- <div class="job-tags">
- <span class="tag">Presencial</span>
- <span class="tag">Atendimento ao Cliente</span>
- <span class="tag">Experiência na área de cobrança</span>
- <span class="tag">Ensino Médio / Técnico</span>
- <span class="tag">Regime CLT</span>
- <span class="tag">Bonificação se atingir a meta</span>
- </div>
- <span class="post-date">Postada recentemente</span>
- </div>
- <a href="https://wa.me/5571992064279?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="btn-details" target="_blank" rel="noopener noreferrer">
- Ver mais detalhes
- </a>
- </article> 
- <!-- Vaga 3: Assaí -->
- <article class='job-card' data-title='assai atacadista operador caixa loja aprendiz'>
- <div class='card-body'>
- <div class='card-brand'>
- <span class='company-name'>ASSAÍ ATACADISTA</span>
- </div>
- <h3 class='job-title'>Assaí Atacadista abre 3.3075 Oportunidades</h3>
- <div class='job-location'>📍 Várias Cidades | Vagas Operacionais e RH</div>
- <div class='job-tags'>
- <span class='tag'>Presencial</span>
- <span class='tag'>Operador de Caixa</span> 
- <span class='tag'>Atendente</span>
- <span class='tag'>Jovem Aprendiz</span>
- </div>
- <span class='post-date'>Postada recentemente</span>
- </div>
- <a class='btn-details' href='https://br.vagasproximas.com/2026/07/29/assai-atacadista-esta-com-2039-vagas-de-emprego-em-todo-o-brasil/' rel='noopener noreferrer' target='_blank'>
- Ver mais detalhes
- </a>
- </article>
+  <div class="main-layout">
+    <main>
+      <!-- SEÇÃO DE VAGAS -->
+      <div id="jobsSection">
+        <div class="list-header">
+          <h2>Vagas</h2>
+          <span class="vagas-count">Oportunidades em Destaque</span>
+        </div>
+        <div class="jobs-grid" id="jobsGrid">  
+          <!-- Vaga 1: Rede D'Or -->
+          <article class="job-card" data-title="rede dor contratacao recepcionista atendimento diversos estados brasil saude hospitalar">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">REDE D'OR</span>
+              </div>
+              <h3 class="job-title">Recepcionista – Diversos Estados</h3>
+              <div class="job-location">📍 Vários Estados (SP, RJ, MS, BA, PE, PB, DF, MG, PA, PR, CE)</div>
+              <div class="job-tags">
+                <span class="tag">Efetivo (CLT)</span>
+                <span class="tag">Salário Fixo</span>
+                <span class="tag">Assistência Médica/Odonto</span>
+                <span class="tag">Refeitório + VT</span>
+                <span class="tag">Seguro de Vida</span>
+              </div>
+              <span class="post-date">Postada recentemente</span>
+            </div>
+            <a href="https://br.vagasproximas.com/2026/08/11/rede-dor-contrata-recepcionista-em-diversos-estados-do-brasil/" class="btn-details" target="_blank" rel="noopener noreferrer">
+              Ver mais detalhes
+            </a>
+          </article>
 
- <!-- ESPAÇO DE ANÚNCIO INTERCALADO (300x250) -->
- <div class="ad-container grid-full-width">
- <div class="ad-box">
- <small>PUBLICIDADE</small>
- <script>
-  atOptions = {
-    'key' : 'cec4c9b1c0036a26016140e960d2cc93',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
- </script>
- <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
- </div>
- </div>
+          <!-- Vaga 2: Empresa Destak -->
+          <article class="job-card" data-title="EMPRESA DESTAK VAGAS DE EMPREGO">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">EMPRESA DESTAK</span>  
+              </div>
+              <h3 class="job-title">Assessoria Jurídica</h3>
+              <div class="job-location">📍 Salvador / BA | Salário Compatível</div>
+              <div class="job-tags">
+                <span class="tag">Presencial</span>
+                <span class="tag">Atendimento ao Cliente</span>
+                <span class="tag">Experiência na área de cobrança</span>
+                <span class="tag">Ensino Médio / Técnico</span>
+                <span class="tag">Regime CLT</span>
+                <span class="tag">Bonificação se atingir a meta</span>
+              </div>
+              <span class="post-date">Postada recentemente</span>
+            </div>
+            <a href="https://wa.me/5571992064279?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="btn-details" target="_blank" rel="noopener noreferrer">
+              Ver mais detalhes
+            </a>
+          </article> 
 
- <!-- Vaga 4: Helppi (Home Office) -->
- <article class='job-card' data-title='helppi suporte cliente home office atendimento'>
- <div class='card-body'>
- <div class='card-brand'>
- <span class='company-name badge-purple'>HELPPI</span>
- </div>
- <h3 class='job-title'>Suporte ao Cliente 100% Home Office</h3>
- <div class='job-location'>🏠 Remoto / Home Office | CLT Fixo</div>
- <div class='job-tags'>
- <span class='tag tag-purple'>Home Office</span>
- <span class='tag'>iFood Benefícios</span>
- <span class='tag'>Equipamento Fornecido</span>
- </div>
- <span class='post-date'>Postada recentemente</span>
- </div>
- <a class='btn-details' href='https://br.vagasproximas.com/2026/07/27/helppi-abre-vaga-para-suporte-ao-cliente-100-home-office/' rel='noopener noreferrer' target='_blank'>
- Ver mais detalhes
- </a>
- </article>  
- </div>
- </div>
+          <!-- Vaga 3: Assaí -->
+          <article class='job-card' data-title='assai atacadista operador caixa loja aprendiz'>
+            <div class='card-body'>
+              <div class='card-brand'>
+                <span class='company-name'>ASSAÍ ATACADISTA</span>
+              </div>
+              <h3 class='job-title'>Assaí Atacadista abre 3.3075 Oportunidades</h3>
+              <div class='job-location'>📍 Várias Cidades | Vagas Operacionais e RH</div>
+              <div class='job-tags'>
+                <span class='tag'>Presencial</span>
+                <span class='tag'>Operador de Caixa</span> 
+                <span class='tag'>Atendente</span>
+                <span class='tag'>Jovem Aprendiz</span>
+              </div>
+              <span class='post-date'>Postada recentemente</span>
+            </div>
+            <a class='btn-details' href='https://br.vagasproximas.com/2026/07/29/assai-atacadista-esta-com-2039-vagas-de-emprego-em-todo-o-brasil/' rel='noopener noreferrer' target='_blank'>
+              Ver mais detalhes
+            </a>
+          </article>
 
- <!-- SEÇÃO SOBRE E CONTATO -->
- <section id="aboutSection" class="content-block">
- <h1 class="page-title">Sobre o Portal OportunidadesVagasbr</h1>
- <p class="text-body">
- O <strong>OportunidadesVagasbr</strong> é um canal digital dedicado a reunir e organizar informações sobre o mercado de trabalho, oportunidades de emprego, estágio e conteúdos educativos para profissionais de todo o Brasil.
- </p>
- <p class="text-body">
- Nosso compromisso é levar informação limpa, rápida e gratuita para quem está em busca de recolocação ou desenvolvimento profissional.
- </p>
- <div class="contact-box">
- <h3 style="color: var(--purple-dark); font-size: 1.2rem; margin-bottom: 10px; font-weight: 700;">📧 Fale Conosco</h3>
- <p class="text-body" style="margin-bottom: 10px;">
- Tem alguma dúvida, sugestão de melhoria ou deseja reportar algum link quebrado?
- </p>
- <p class="text-body" style="font-weight: 600;">
- Entre em contato pelo nosso e-mail oficial:
- </p>
- <a href="mailto:contato.oportunidadesvagasbr@gmail.com" class="email-btn">
- contato.oportunidadesvagasbr@gmail.com
- </a>
- </div>
- </section>
+          <!-- Vaga 4: Sicredi -->
+          <article class='job-card' data-title='SICREDI VAGAS DE EMPREGO PARA TODO O BRASIL'>
+            <div class='card-body'>
+              <div class='card-brand'>
+                <span class='company-name'>SICREDI VAGAS DE EMPREGO</span>
+              </div>
+              <h3 class='job-title'>DIVERSAS VAGAS DE EMPREGO PARA TODO O BRASIL</h3>
+              <div class='job-location'>📍 Diversos Setores | Salário Fixo CLT</div>
+              <div class='job-tags'>
+                <span class='tag'>Presencial</span>
+                <span class='tag'>Plano de Saúde e Odontológico</span>
+                <span class='tag'>Ensino Médio a Pós</span>
+                <span class='tag'>Salário compatível (CLT)</span>
+              </div>
+              <span class='post-date'>Postada recentemente</span>
+            </div>
+            <a class='btn-details' href='https://br.vagasproximas.com/2026/08/03/sicredi-esta-com-954-vagas-de-emprego-para-todo-o-brasil/' rel='noopener noreferrer' target='_blank'>
+              Ver mais detalhes
+            </a>
+          </article>
 
- <!-- SEÇÃO POLÍTICA DE PRIVACIDADE -->
- <section id="privacySection" class="content-block">
- <h1 class="page-title">Política de Privacidade</h1>  
- <p class="text-body"><strong>Política de Privacidade do Oportunidadesvagasbr</strong></p>
- <p class="text-body">
- No Oportunidadesvagasbr, acessível a partir do nosso endereço principal, uma das nossas principais prioridades é a privacidade dos nossos visitantes. Este documento de Política de Privacidade contém tipos de informações que são coletadas e registradas pelo Oportunidadesvagasbr e como as utilizamos.
- </p>
- <p class="text-body">
- Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade, não hesite em nos contatar através do e-mail: 
- <strong>contato.oportunidadesvagasbr@gmail.com</strong>.
- </p>
- <h2 class="section-subtitle">1. Isenção de Responsabilidade sobre Vagas de Emprego</h2>
- <p class="text-body">
- O Oportunidadesvagasbr é um portal puramente informativo. Não realizamos contratações diretas, não intermediamos processos seletivos e não cobramos nenhum tipo de taxa ou valor para candidatura a vagas. Todas as oportunidades divulgadas direcionam o usuário para os canais oficiais de recrutamento das empresas responsáveis.
- </p>
- <h2 class="section-subtitle">2. Arquivos de Log (Log Files)</h2>
- <p class="text-body">
- O Oportunidadesvagasbr segue um procedimento padrão de uso de arquivos de log. Esses arquivos registram os visitantes quando eles visitam sites. Todas as empresas de hospedagem e redes publicitárias fazem isso como parte da análise técnica do serviço. As informações coletadas incluem:
- </p>
- <ul class="text-list">
- <li>Endereço de Protocolo de Internet (IP);</li>
- <li>Tipo de navegador e sistema operacional;</li>
- <li>Provedor de Serviços de Internet (ISP);</li>
- <li>Data, hora e duração do acesso;</li>
- <li>Páginas de referência, saída e número de cliques.</li>  
- </ul>
- <p class="text-body">
- Esses dados não estão ligados a nenhuma informação que seja pessoalmente identificável e são utilizados para analisar tendências, administrar o site e otimizar o desempenho.
- </p>
- <h2 class="section-subtitle">3. Cookies, Web Beacons e Scripts de Rastreamento</h2>
- <p class="text-body">
- Como a maioria dos sites modernos, o Oportunidadesvagasbr utiliza "cookies" e scripts para armazenar informações sobre as preferências dos visitantes e as páginas navegadas. Essas informações são usadas para otimizar a experiência do usuário, personalizando o conteúdo e a exibição de anúncios com base no tipo de navegador ou dispositivo utilizado.
- </p>
- <h2 class="section-subtitle">4. Redes de Anúncios e Parceiros de Publicidade</h2>
- <p class="text-body">
- Utilizamos redes de publicidade de terceiros (como Adsterra Network e parceiros similares) para veicular anúncios quando você visita o nosso site. Essas empresas podem utilizar cookies, JavaScript, Web Beacons e scripts de rastreamento para coletar informações não pessoais (como endereço IP, tipo de navegador e páginas visitadas) para medir a eficácia das campanhas publicitárias e/ou personalizar o conteúdo dos anúncios exibidos.
- </p>
- <p class="text-body">
- O Oportunidadesvagasbr não tem acesso nem controle sobre os cookies ou tecnologias de rastreamento utilizadas por esses anunciantes de terceiros.
- </p>
- <h2 class="section-subtitle">5. Políticas de Privacidade de Terceiros</h2>
- <p class="text-body">
- A Política de Privacidade do Oportunidadesvagasbr não se aplica a outros anunciantes, redes de publicidade ou sites externos para os quais redirecionamos. Aconselhamos que você consulte as respetivas Políticas de Privacidade desses parceiros terceirizados para obter informações detalhadas sobre suas práticas e instruções sobre como optar por não participar de determinadas opções.  
- </p>
- <p class="text-body">
- Você pode optar por desativar os cookies alterando as configurações individuais do seu navegador de internet.
- </p>
- <h2 class="section-subtitle">6. Direitos de Privacidade da LGPD (Lei Geral de Proteção de Dados)</h2>
- <p class="text-body">
- De acordo com a Lei Geral de Proteção de Dados (LGPD) no Brasil, os usuários têm o direito de solicitar:
- </p>
- <ul class="text-list">
- <li>Confirmação da existência de tratamento de dados;</li>
- <li>Acesso aos seus dados cadastrais (caso fornecidos via e-mail);</li>
- <li>Correção de dados incompletos ou desatualizados;</li>
- <li>Anonimização, bloqueio ou eliminação de dados desnecessários;</li>
- <li>Revogação do consentimento a qualquer momento.</li>
- </ul>
- <p class="text-body">
- Para exercer qualquer um desses direitos, entre em contato pelo e-mail: 
- <strong>contato.oportunidadesvagasbr@gmail.com</strong>.
- </p>
- <h2 class="section-subtitle">7. Proteção às Informações Infantis</h2>
- <p class="text-body">
- O Oportunidadesvagasbr não coleta conscientemente nenhuma Informação de Identificação Pessoal de crianças menores de 13 anos. Caso identifique que alguma informação desse tipo nos foi enviada, entre em contato imediatamente para que possamos tomar as providências de remoção de nossos registros.
- </p>
- <h2 class="section-subtitle">8. Consentimento</h2>
- <p class="text-body">  
- Ao utilizar nosso site, você declara estar ciente e de acordo com os termos desta Política de Privacidade.
- </p>
- </section>
- </main>
+          <!-- BANNER DE ANÚNCIO INTERCALADO -->
+          <div class="ad-container grid-full-width">
+            <div class="ad-box">
+              <small>PUBLICIDADE</small>
+              <script>
+                atOptions = {
+                  'key' : 'cec4c9b1c0036a26016140e960d2cc93',
+                  'format' : 'iframe',
+                  'height' : 250,
+                  'width' : 300,
+                  'params' : {}
+                };
+              </script>
+              <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+            </div>
+          </div>
 
- <aside class="sidebar">
- <!-- WIDGET DE ANÚNCIO LATERAL (300x250) -->
- <div class="widget widget-ad">
- <div class="ad-container">
- <div class="ad-box">
- <small>PUBLICIDADE</small>
- <script>
-  atOptions = {
-    'key' : 'cec4c9b1c0036a26016140e960d2cc93',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
- </script>
- <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
- </div>
- </div>
- </div>
+          <!-- Vaga 5: Helppi -->
+          <article class='job-card' data-title='helppi suporte cliente home office atendimento'>
+            <div class='card-body'>
+              <div class='card-brand'>
+                <span class='company-name badge-purple'>HELPPI</span>
+              </div>
+              <h3 class='job-title'>Suporte ao Cliente 100% Home Office</h3>
+              <div class='job-location'>🏠 Remoto / Home Office | CLT Fixo</div>
+              <div class='job-tags'>
+                <span class='tag tag-purple'>Home Office</span>
+                <span class='tag'>iFood Benefícios</span>
+                <span class='tag'>Equipamento Fornecido</span>
+              </div>
+              <span class='post-date'>Postada recentemente</span>
+            </div>
+            <a class='btn-details' href='https://br.vagasproximas.com/2026/07/27/helppi-abre-vaga-para-suporte-ao-cliente-100-home-office/' rel='noopener noreferrer' target='_blank'>
+              Ver mais detalhes
+            </a>
+          </article>  
 
- <div class="widget">
- <h3 class="widget-title">ℹ️ Sobre o Portal</h3>
- <p class="widget-desc">Portal voltado à divulgação gratuita de notícias sobre oportunidades de emprego e mercado de trabalho em todo o país.</p>
- </div>
- </aside>
- </div>
+          <!-- Vaga 6: Irmã Dulce -->
+          <article class='job-card' data-title='Obras Sociais Irmã Dulce - Agente de Portaria'>
+            <div class='card-body'>
+              <div class='card-brand'>
+                <span class='company-name'>OBRAS SOCIAIS IRMÃ DULCE</span>
+              </div>
+              <h3 class='job-title'>Agente de Portaria</h3>
+              <div class='job-location'>📍 Trabalho Presencial</div>
+              <div class='job-tags'>
+                <span class='tag'>Presencial</span>
+                <span class='tag'>Atendimento</span>
+                <span class='tag'>Ensino Médio Completo</span>
+                <span class='tag'>6 meses de experiência</span>
+              </div>
+              <span class='post-date'>Postada recentemente</span>
+            </div>
+            <a class='btn-details' href='https://obrassociaisirmadulce.gupy.io/job/eyJqb2JJZCI6MTE4ODk3NTgsInNvdXJjZSI6ImluZGVlZCJ9?jobBoardSource=share_link' rel='noopener noreferrer' target='_blank'>
+              Ver mais detalhes
+            </a>
+          </article>
+        </div>
+      </div>
 
- <footer>
- <div class="footer-container">
- <div class="footer-col">
- <h3>oportunidades<span>vagas</span></h3>
- <p>O seu canal diário de notícias sobre empregos e carreiras no Brasil.</p>
- </div>
- <div class="footer-col">
- <h3>Links Úteis</h3>  
- <ul class="footer-links">
- <li><a onclick="navigateTo('jobs')">Todas as Vagas</a></li>
- <li><a onclick="navigateTo('about')">Sobre e Contato</a></li>
- <li><a onclick="navigateTo('privacy')">Política de Privacidade</a></li>
- </ul>
- </div>
- </div>
- <div class="copyright">&#169; 2026 Oportunidades Vagas. Todos os direitos reservados.</div>
- </footer>
+      <!-- SEÇÃO SOBRE E CONTATO -->
+      <section id="aboutSection" class="content-block">
+        <h1 class="page-title">Sobre o Portal OportunidadesVagasbr</h1>
+        <p class="text-body">
+          O <strong>OportunidadesVagasbr</strong> é um canal digital dedicado a reunir e organizar informações sobre o mercado de trabalho, oportunidades de emprego, estágio e conteúdos educativos para profissionais de todo o Brasil.
+        </p>
+        <p class="text-body">
+          Nosso compromisso é levar informação limpa, rápida e gratuita para quem está em busca de recolocação ou desenvolvimento profissional.
+        </p>
+        <div class="contact-box">
+          <h3 style="color: var(--purple-dark); font-size: 1.2rem; margin-bottom: 10px; font-weight: 700;">📧 Fale Conosco</h3>
+          <p class="text-body" style="margin-bottom: 10px;">
+            Tem alguma dúvida, sugestão de melhoria ou deseja reportar algum link quebrado?
+          </p>
+          <p class="text-body" style="font-weight: 600;">
+            Entre em contato pelo nosso e-mail oficial:
+          </p>
+          <a href="mailto:contato.oportunidadesvagasbr@gmail.com" class="email-btn">
+            contato.oportunidadesvagasbr@gmail.com
+          </a>
+        </div>
+      </section>
 
- <script>
- // --- SISTEMA DE NAVEGAÇÃO ENTRE PÁGINAS ---
- const jobsSection = document.getElementById('jobsSection');
- const aboutSection = document.getElementById('aboutSection');
- const privacySection = document.getElementById('privacySection');
- const heroSection = document.getElementById('heroSection');
- const btnNavJobs = document.getElementById('btnNavJobs');
- const btnNavAbout = document.getElementById('btnNavAbout');
- const btnNavPrivacy = document.getElementById('btnNavPrivacy');
+      <!-- SEÇÃO POLÍTICA DE PRIVACIDADE -->
+      <section id="privacySection" class="content-block">
+        <h1 class="page-title">Política de Privacidade</h1>  
+        <p class="text-body"><strong>Política de Privacidade do Oportunidadesvagasbr</strong></p>
+        <p class="text-body">
+          No Oportunidadesvagasbr, acessível a partir do nosso endereço principal, uma das nossas principais prioridades é a privacidade dos nossos visitantes. Este documento de Política de Privacidade contém tipos de informações que são coletadas e registradas pelo Oportunidadesvagasbr e como as utilizamos.
+        </p>
+        <p class="text-body">
+          Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade, não hesite em nos contatar através do e-mail: 
+          <strong>contato.oportunidadesvagasbr@gmail.com</strong>.
+        </p>
+        <h2 class="section-subtitle">1. Isenção de Responsabilidade sobre Vagas de Emprego</h2>
+        <p class="text-body">
+          O Oportunidadesvagasbr é um portal puramente informativo. Não realizamos contratações diretas, não intermediamos processos seletivos e não cobramos nenhum tipo de taxa ou valor para candidatura a vagas. Todas as oportunidades divulgadas direcionam o usuário para os canais oficiais de recrutamento das empresas responsáveis.
+        </p>
+        <h2 class="section-subtitle">2. Arquivos de Log (Log Files)</h2>
+        <p class="text-body">
+          O Oportunidadesvagasbr segue um procedimento padrão de uso de arquivos de log. Esses arquivos registram os visitantes quando eles visitam sites. Todas as empresas de hospedagem e redes publicitárias fazem isso como parte da análise técnica do serviço. As informações coletadas incluem:
+        </p>
+        <ul class="text-list">
+          <li>Endereço de Protocolo de Internet (IP);</li>
+          <li>Tipo de navegador e sistema operacional;</li>
+          <li>Provedor de Serviços de Internet (ISP);</li>
+          <li>Data, hora e duração do acesso;</li>
+          <li>Páginas de referência, saída e número de cliques.</li>  
+        </ul>
+        <p class="text-body">
+          Esses dados não estão ligados a nenhuma informação que seja pessoalmente identificável e são utilizados para analisar tendências, administrar o site e otimizar o desempenho.
+        </p>
+        <h2 class="section-subtitle">3. Cookies, Web Beacons e Scripts de Rastreamento</h2>
+        <p class="text-body">
+          Como a maioria dos sites modernos, o Oportunidadesvagasbr utiliza "cookies" e scripts para armazenar informações sobre as preferências dos visitantes e as páginas navegadas. Essas informações são usadas para otimizar a experiência do usuário, personalizando o conteúdo e a exibição de anúncios com base no tipo de navegador ou dispositivo utilizado.
+        </p>
+        <h2 class="section-subtitle">4. Redes de Anúncios e Parceiros de Publicidade</h2>
+        <p class="text-body">
+          Utilizamos redes de publicidade de terceiros (como Adsterra Network e parceiros similares) para veicular anúncios quando você visita o nosso site. Essas empresas podem utilizar cookies, JavaScript, Web Beacons e scripts de rastreamento para coletar informações não pessoais (como endereço IP, tipo de navegador e páginas visitadas) para medir a eficácia das campanhas publicitárias e/ou personalizar o conteúdo dos anúncios exibidos.
+        </p>
+        <p class="text-body">
+          O Oportunidadesvagasbr não tem acesso nem controle sobre os cookies ou tecnologias de rastreamento utilizadas por esses anunciantes de terceiros.
+        </p>
+        <h2 class="section-subtitle">5. Políticas de Privacidade de Terceiros</h2>
+        <p class="text-body">
+          A Política de Privacidade do Oportunidadesvagasbr não se aplica a outros anunciantes, redes de publicidade ou sites externos para os quais redirecionamos. Aconselhamos que você consulte as respetivas Políticas de Privacidade desses parceiros terceirizados para obter informações detalhadas sobre suas práticas e instruções sobre como optar por não participar de determinadas opções.  
+        </p>
+        <p class="text-body">
+          Você pode optar por desativar os cookies alterando as configurações individuais do seu navegador de internet.
+        </p>
+        <h2 class="section-subtitle">6. Direitos de Privacidade da LGPD (Lei Geral de Proteção de Dados)</h2>
+        <p class="text-body">
+          De acordo com a Lei Geral de Proteção de Dados (LGPD) no Brasil, os usuários têm o direito de solicitar:
+        </p>
+        <ul class="text-list">
+          <li>Confirmação da existência de tratamento de dados;</li>
+          <li>Acesso aos seus dados cadastrais (caso fornecidos via e-mail);</li>
+          <li>Correção de dados incompletos ou desatualizados;</li>
+          <li>Anonimização, bloqueio ou eliminação de dados desnecessários;</li>
+          <li>Revogação do consentimento a qualquer momento.</li>
+        </ul>
+        <p class="text-body">
+          Para exercer qualquer um desses direitos, entre em contato pelo e-mail: 
+          <strong>contato.oportunidadesvagasbr@gmail.com</strong>.
+        </p>
+        <h2 class="section-subtitle">7. Proteção às Informações Infantis</h2>
+        <p class="text-body">
+          O Oportunidadesvagasbr não coleta conscientemente nenhuma Informação de Identificação Pessoal de crianças menores de 13 anos. Caso identifique que alguma informação desse tipo nos foi enviada, entre em contato imediatamente para que possamos tomar as providências de remoção de nossos registros.
+        </p>
+        <h2 class="section-subtitle">8. Consentimento</h2>
+        <p class="text-body">  
+          Ao utilizar nosso site, você declara estar ciente e de acordo com os termos desta Política de Privacidade.
+        </p>
+      </section>
+    </main>
 
- function navigateTo(target) {
- jobsSection.style.display = 'none';
- aboutSection.style.display = 'none';
- privacySection.style.display = 'none';
- heroSection.style.display = 'none';
- btnNavJobs.classList.remove('active');
- btnNavAbout.classList.remove('active');
- btnNavPrivacy.classList.remove('active');  
+    <aside class="sidebar">
+      <!-- WIDGET DE ANÚNCIO LATERAL (300x250) -->
+      <div class="widget widget-ad">
+        <div class="ad-container">
+          <div class="ad-box">
+            <small>PUBLICIDADE</small>
+            <script>
+              atOptions = {
+                'key' : 'cec4c9b1c0036a26016140e960d2cc93',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+              };
+            </script>
+            <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+          </div>
+        </div>
+      </div>
 
- if (target === 'jobs') {
- jobsSection.style.display = 'block';
- heroSection.style.display = 'block';
- btnNavJobs.classList.add('active');
- } else if (target === 'about') {
- aboutSection.style.display = 'block';
- btnNavAbout.classList.add('active');
- } else if (target === 'privacy') {
- privacySection.style.display = 'block';
- btnNavPrivacy.classList.add('active');
- }
- window.scrollTo({ top: 0, behavior: 'smooth' });
- }
+      <div class="widget">
+        <h3 class="widget-title">ℹ️ Sobre o Portal</h3>
+        <p class="widget-desc">Portal voltado à divulgação gratuita de notícias sobre oportunidades de emprego e mercado de trabalho em todo o país.</p>
+      </div>
+    </aside>
+  </div>
 
- // --- SISTEMA DE BUSCA E FILTRO ---
- document.addEventListener('DOMContentLoaded', () => {
- const searchInput = document.getElementById('searchInput');
- const locationInput = document.getElementById('locationInput');
- const searchBtn = document.getElementById('searchBtn');
- const jobCards = document.querySelectorAll('.job-card');
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>oportunidades<span>vagas</span></h3>
+        <p>O seu canal diário de notícias sobre empregos e carreiras no Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Links Úteis</h3>  
+        <ul class="footer-links">
+          <li><a onclick="navigateTo('jobs')">Todas as Vagas</a></li>
+          <li><a onclick="navigateTo('about')">Sobre e Contato</a></li>
+          <li><a onclick="navigateTo('privacy')">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">&#169; 2026 Oportunidades Vagas. Todos os direitos reservados.</div>
+  </footer>
 
- function filterJobs() {
- const queryTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
- const queryLoc = locationInput ? locationInput.value.trim().toLowerCase() : "";
- jobCards.forEach(card => {
- const searchData = card.getAttribute('data-title').toLowerCase();
- const cardContent = card.innerText.toLowerCase();  
- const matchesTerm = queryTerm === "" || searchData.includes(queryTerm) || cardContent.includes(queryTerm);
- const matchesLoc = queryLoc === "" || cardContent.includes(queryLoc);
- if (matchesTerm && matchesLoc) {
- card.style.display = 'flex';
- } else {
- card.style.display = 'none';
- }
- });
- }
+  <script>
+    // --- SISTEMA DE NAVEGAÇÃO ENTRE PÁGINAS ---
+    const jobsSection = document.getElementById('jobsSection');
+    const aboutSection = document.getElementById('aboutSection');
+    const privacySection = document.getElementById('privacySection');
+    const heroSection = document.getElementById('heroSection');
+    const btnNavJobs = document.getElementById('btnNavJobs');
+    const btnNavAbout = document.getElementById('btnNavAbout');
+    const btnNavPrivacy = document.getElementById('btnNavPrivacy');
 
- if (searchBtn) searchBtn.addEventListener('click', filterJobs);
- if (searchInput) searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') filterJobs(); });
- if (locationInput) locationInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') filterJobs(); });
- });
- </script>
+    function navigateTo(target) {
+      jobsSection.style.display = 'none';
+      aboutSection.style.display = 'none';
+      privacySection.style.display = 'none';
+      heroSection.style.display = 'none';
+      btnNavJobs.classList.remove('active');
+      btnNavAbout.classList.remove('active');
+      btnNavPrivacy.classList.remove('active');  
+
+      if (target === 'jobs') {
+        jobsSection.style.display = 'block';
+        heroSection.style.display = 'block';
+        btnNavJobs.classList.add('active');
+      } else if (target === 'about') {
+        aboutSection.style.display = 'block';
+        btnNavAbout.classList.add('active');
+      } else if (target === 'privacy') {
+        privacySection.style.display = 'block';
+        btnNavPrivacy.classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- SISTEMA DE BUSCA E FILTRO ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const locationInput = document.getElementById('locationInput');
+      const searchBtn = document.getElementById('searchBtn');
+      const jobCards = document.querySelectorAll('.job-card');
+
+      function filterJobs() {
+        const queryTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
+        const queryLoc = locationInput ? locationInput.value.trim().toLowerCase() : "";
+        jobCards.forEach(card => {
+          const searchData = card.getAttribute('data-title').toLowerCase();
+          const cardContent = card.innerText.toLowerCase();  
+          const matchesTerm = queryTerm === "" || searchData.includes(queryTerm) || cardContent.includes(queryTerm);
+          const matchesLoc = queryLoc === "" || cardContent.includes(queryLoc);
+          if (matchesTerm && matchesLoc) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      if (searchBtn) searchBtn.addEventListener('click', filterJobs);
+      if (searchInput) searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') filterJobs(); });
+      if (locationInput) locationInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') filterJobs(); });
+    });
+  </script>
 </body>
 </html>
