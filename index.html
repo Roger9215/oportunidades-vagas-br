@@ -165,6 +165,15 @@
       margin: 10px 0;
     }
 
+    /* Estilo para alinhar anúncios lado a lado */
+    .ads-wrapper-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
     .job-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -347,18 +356,37 @@
           <a href="#" class="btn-details">Ver mais detalhes</a>
         </div>
 
-        <!-- ANÚNCIO INTERCALADO NO GRID (OCUPA A LARGURA INTEIRA) -->
+        <!-- ANÚNCIOS LADO A LADO INTERCALADOS NO GRID -->
         <div class="grid-full-width">
-          <script type="text/javascript">
-            atOptions = {
-              'key' : 'cec4c9b1c0036a26016140e960d2cc93',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+          <span style="font-size: 0.7rem; color: #a0aec0; display: block; margin-bottom: 4px;">PUBLICIDADE</span>
+          <div class="ads-wrapper-side">
+            <!-- Anúncio 1 -->
+            <div>
+              <script type="text/javascript">
+                atOptions = {
+                  'key' : 'cec4c9b1c0036a26016140e960d2cc93',
+                  'format' : 'iframe',
+                  'height' : 250,
+                  'width' : 300,
+                  'params' : {}
+                };
+              </script>
+              <script type="text/javascript" src="//www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+            </div>
+            <!-- Anúncio 2 -->
+            <div>
+              <script type="text/javascript">
+                atOptions = {
+                  'key' : 'cec4c9b1c0036a26016140e960d2cc93',
+                  'format' : 'iframe',
+                  'height' : 250,
+                  'width' : 300,
+                  'params' : {}
+                };
+              </script>
+              <script type="text/javascript" src="//www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+            </div>
+          </div>
         </div>
 
         <!-- LINHA 2: Vaga 3 - Gaudium -->
@@ -380,7 +408,7 @@
           <a href="#" class="btn-details">Ver mais detalhes</a>
         </div>
 
-        <!-- LINHA 2: Vaga 4 - Sicredi (POSICIONADO AO LADO DA GAUDIUM) -->
+        <!-- LINHA 2: Vaga 4 - Sicredi -->
         <div class="job-card">
           <div>
             <div class="job-company">SICREDI VAGAS DE EMPREGO</div>
