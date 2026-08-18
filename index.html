@@ -5,30 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oportunidades e Vagas</title>
   <style>
-    /* Estilos Gerais */
-    body {
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
       background-color: #f4f5f7;
       color: #333;
+    }
+
+    /* Barra Informativa Superior */
+    .top-bar {
+      background-color: #0d1117;
+      color: #ffffff;
+      text-align: center;
+      padding: 8px 15px;
+      font-size: 0.82rem;
+    }
+
+    /* Header Navegação */
+    .header-nav {
+      background-color: #ffffff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .logo span {
+      color: #4c1d95;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4a5568;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .nav-links a.active {
+      background-color: #f3e8ff;
+      color: #6b21a8;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .btn-group {
+      background-color: #22c55e;
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    /* Hero Banner Roxo com Busca */
+    .hero-section {
+      background-color: #6b21a8;
+      color: #ffffff;
+      padding: 40px 20px 50px 20px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      background: #ffffff;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      gap: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .search-field {
+      flex: 1;
+      text-align: left;
+    }
+
+    .search-field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #1a202c;
+      margin-bottom: 6px;
+    }
+
+    .search-field input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.85rem;
+    }
+
+    .btn-search {
+      background-color: #4c1d95;
+      color: #ffffff;
+      border: none;
+      padding: 0 25px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      align-self: flex-end;
+      height: 38px;
     }
 
     /* Container Principal */
     .main-container {
       max-width: 1200px;
-      margin: 20px auto;
+      margin: 25px auto;
       padding: 0 15px;
       display: flex;
       gap: 20px;
     }
 
-    /* Seção Principal de Conteúdo */
     .content-area {
       flex: 1;
     }
 
-    /* Anúncio do Topo (Header) */
     .ad-top {
       text-align: center;
       margin-bottom: 20px;
@@ -41,14 +159,12 @@
       gap: 20px;
     }
 
-    /* Item de Anúncio entre as vagas ocupa a largura inteira (2 colunas) */
     .grid-full-width {
       grid-column: 1 / -1;
       text-align: center;
       margin: 10px 0;
     }
 
-    /* Card de Vaga */
     .job-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -107,11 +223,7 @@
       display: block;
     }
 
-    .btn-details:hover {
-      background-color: #3b0764;
-    }
-
-    /* Barra Lateral (Sidebar) */
+    /* Sidebar */
     .sidebar {
       width: 300px;
       display: flex;
@@ -128,32 +240,43 @@
 
     .sidebar-widget h3 {
       font-size: 1rem;
-      margin-top: 0;
       margin-bottom: 10px;
       color: #1a202c;
     }
 
-    /* Responsividade para telas menores */
     @media (max-width: 900px) {
-      .main-container {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-      }
+      .main-container { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .search-box { flex-direction: column; }
+      .btn-search { width: 100%; height: 40px; }
     }
 
     @media (max-width: 600px) {
-      .jobs-grid {
-        grid-template-columns: 1fr;
-      }
+      .jobs-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Anúncio Topo 728x90 -->
+  <!-- Barra do topo -->
+  <div class="top-bar">
+    Informativo Importante: Este portal é puramente informativo. Não realizamos contratações nem cobramos valores. O cadastro é gratuito nos sites oficiais.
+  </div>
+
+  <!-- Cabeçalho de Navegação -->
+  <header class="header-nav">
+    <div class="logo">oportunidades<span>vagas</span></div>
+    <nav class="nav-links">
+      <a href="#" class="active">Todas as vagas</a>
+      <a href="#">Sobre</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#" class="btn-group">+ Seguir Grupo</a>
+    </nav>
+  </header>
+
+  <!-- Anúncio Topo (Abaixo do menu) -->
   <div class="ad-top">
+    <span style="font-size: 0.7rem; color: #a0aec0; display: block; margin-bottom: 4px;">PUBLICIDADE</span>
     <script type="text/javascript">
       atOptions = {
         'key' : '5c4c40b200bb1077ecf32b4181b9f16f',
@@ -166,11 +289,28 @@
     <script type="text/javascript" src="//www.highperformanceformat.com/5c4c40b200bb1077ecf32b4181b9f16f/invoke.js"></script>
   </div>
 
+  <!-- Hero Section com a Barra de Busca -->
+  <section class="hero-section">
+    <h1 class="hero-title">O portal de vagas de empregos mais completo do Brasil.</h1>
+    
+    <div class="search-box">
+      <div class="search-field">
+        <label>Qual vaga de emprego procura?</label>
+        <input type="text" placeholder="Digite o nome da vaga ou cargo (ex: Atendente, ...)">
+      </div>
+      <div class="search-field">
+        <label>Onde você procura trabalho?</label>
+        <input type="text" placeholder="Ex: Salvador - BA, Brasil">
+      </div>
+      <button class="btn-search">Buscar vagas</button>
+    </div>
+  </section>
+
+  <!-- Container de Vagas e Sidebar -->
   <div class="main-container">
     
-    <!-- ÁREA PRINCIPAL DAS VAGAS -->
     <div class="content-area">
-      <h2>Vagas</h2>
+      <h2 style="margin-bottom: 15px;">Vagas</h2>
       
       <div class="jobs-grid">
         
@@ -240,7 +380,7 @@
           <a href="#" class="btn-details">Ver mais detalhes</a>
         </div>
 
-        <!-- LINHA 2: Vaga 4 - Sicredi (MOVIDO PARA FICAR AO LADO DA GAUDIUM) -->
+        <!-- LINHA 2: Vaga 4 - Sicredi (POSICIONADO AO LADO DA GAUDIUM) -->
         <div class="job-card">
           <div>
             <div class="job-company">SICREDI VAGAS DE EMPREGO</div>
