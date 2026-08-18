@@ -192,7 +192,7 @@
         grid-template-columns: 1fr;
       }
     }
-    /* --- CARDS DE VAGAS --- */
+    /* --- CARDS DE VAGAS (CONFIGURADO LADO A LADO) --- */
     .list-header {
       display: flex;
       justify-content: space-between;
@@ -210,7 +210,7 @@
     }
     .jobs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
     .job-card {
@@ -223,6 +223,7 @@
       justify-content: space-between;
       overflow: hidden;
       transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
     }
     .job-card:hover {
       transform: translateY(-3px);
@@ -230,6 +231,7 @@
     }
     .card-body {
       padding: 20px;
+      flex-grow: 1;
     }
     .company-name {
       font-size: 0.75rem;
@@ -348,7 +350,7 @@
       background-color: var(--purple-hover);
     }
 
-    /* --- ADS / PUBLICIDADE (AJUSTADO) --- */
+    /* --- ADS / PUBLICIDADE --- */
     .ad-container {
       display: flex;
       justify-content: center;
@@ -358,7 +360,7 @@
       overflow: hidden;
     }  
     .grid-full-width {
-      grid-column: 1/-1;
+      grid-column: 1 / -1;
     }
     .ad-slot-header {
       max-width: 1200px;
@@ -548,30 +550,32 @@
               Ver mais detalhes
             </a>
           </article>
-          <<!-- Vaga: Gaudium (Home Office) -->
-         <article class='job-card' data-title='gaudium assistente de parcerias e vendas home office'>
-         <div class='card-body'>
-         <div class='card-brand'>
-         <span class='company-name badge-purple'>GAUDIUM</span>
-         </div>
-<h3 class='job-title'>Assistente de Parcerias</h3>
-<div class='job-location'>🏠 Remoto / Home Office</div>
-<div class='job-tags'>
-<span class='tag tag-purple'>Home Office</span>
- <span class='tag'>Efetivo (CLT)</span>
-<span class='tag'>Salário  R$ 4.103,93 e R$ 4.719,52</span>
-  <span class='tag'>Vale-Alimentação R$ 50,00 DIA</span>
-<  span class='tag'>Auxílio Teletrabalho R$ 131,16 DIA</span>  
-   <span class='tag'>Atendimento B2B</span>
-    <span class='tag'>Vendas &amp; CRM</span>
-  </div>
-     <span class='post-date'>Postada recentemente</span>
-    </div>
-     <a class='btn-details' href='https://br.vagasproximas.com/2026/08/18/gaudium-contrata-assistente-de-parcerias-home-office-com-salario-de-ate-r4-71952-r-13116-de-auxilio-teletrabalho-r-5000-por-dia-de-vale-alimentacao/' rel='noopener noreferrer' target='_blank'>
-Ver mais detalhes
-       </a>
-        </article>
-    <!-- Vaga 3: Assaí -->
+
+          <!-- Vaga 2: Gaudium (Home Office) -->
+          <article class='job-card' data-title='gaudium assistente de parcerias e vendas home office'>
+            <div class='card-body'>
+              <div class='card-brand'>
+                <span class='company-name badge-purple'>GAUDIUM</span>
+              </div>
+              <h3 class='job-title'>Assistente de Parcerias</h3>
+              <div class='job-location'>🏠 Remoto / Home Office</div>
+              <div class='job-tags'>
+                <span class='tag tag-purple'>Home Office</span>
+                <span class='tag'>Efetivo (CLT)</span>
+                <span class='tag'>Salário R$ 4.103,93 e R$ 4.719,52</span>
+                <span class='tag'>Vale-Alimentação R$ 50,00 DIA</span>
+                <span class='tag'>Auxílio Teletrabalho R$ 131,16</span>  
+                <span class='tag'>Atendimento B2B</span>
+                <span class='tag'>Vendas &amp; CRM</span>
+              </div>
+              <span class='post-date'>Postada recentemente</span>
+            </div>
+            <a class='btn-details' href='https://br.vagasproximas.com/2026/08/18/gaudium-contrata-assistente-de-parcerias-home-office-com-salario-de-ate-r4-71952-r-13116-de-auxilio-teletrabalho-r-5000-por-dia-de-vale-alimentacao/' rel='noopener noreferrer' target='_blank'>
+              Ver mais detalhes
+            </a>
+          </article>
+
+          <!-- Vaga 3: Assaí -->
           <article class='job-card' data-title='assai atacadista operador caixa loja aprendiz'>
             <div class='card-body'>
               <div class='card-brand'>
@@ -613,7 +617,7 @@ Ver mais detalhes
             </a>
           </article>
 
-          <!-- BANNER DE ANÚNCIO INTERCALADO -->
+          <!-- BANNER DE ANÚNCIO INTERCALADO (OCUPA LARGURA TOTAL DA GRADE) -->
           <div class="ad-container grid-full-width">
             <div class="ad-box">
               <small>PUBLICIDADE</small>
@@ -847,7 +851,7 @@ Ver mais detalhes
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // --- SISTEMA DE BUSCA E FILTRO ---
+    // --- SISTEMA DE BUSCA E FILTRO (AJUSTADO PARA A MANUTENÇÃO DA GRADE) ---
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('searchInput');
       const locationInput = document.getElementById('locationInput');
