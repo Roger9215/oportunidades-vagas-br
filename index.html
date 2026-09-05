@@ -32,6 +32,7 @@
       color: var(--text-dark);
       line-height: 1.6;
     }
+
     /* --- BARRA DE AVISO --- */
     .disclaimer-bar {
       background-color: #0f172a;
@@ -43,6 +44,7 @@
     .disclaimer-bar strong {
       color: #f8fafc;
     }
+
     /* --- CABEÇALHO / HEADER --- */ 
     header {
       background: #ffffff;
@@ -93,25 +95,7 @@
       color: var(--purple-main);
       background-color: var(--purple-light);
     }
-    /* --- BOTÃO SEGUIR (WHATSAPP) --- */
-    .btn-follow {
-      background-color: #25d366;
-      color: white;
-      font-weight: 700;
-      font-size: 0.88rem;
-      padding: 8px 18px;
-      border-radius: 20px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.2s, background-color 0.2s;
-      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
-    }
-    .btn-follow:hover {
-      background-color: #1eb954;
-      transform: translateY(-1px);
-    }
+    
     /* --- HERO / BUSCA --- */
     .hero-solides {  
       background-color: var(--purple-main);
@@ -178,6 +162,7 @@
     .btn-search:hover {  
       background-color: var(--purple-hover);
     } 
+
     /* --- LAYOUT PRINCIPAL --- */
     .main-layout {
       max-width: 1200px;
@@ -192,6 +177,7 @@
         grid-template-columns: 1fr;
       }
     }
+
     /* --- CARDS DE VAGAS --- */
     .list-header {
       display: flex;
@@ -205,12 +191,13 @@
       font-weight: 800;
     }
     .vagas-count {  
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.8rem;
+      color: var(--purple-main);
+      font-weight: 700;
     }
     .jobs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
     .job-card {
@@ -222,7 +209,7 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .job-card:hover {
       transform: translateY(-3px);
@@ -231,43 +218,35 @@
     .card-body {
       padding: 20px;
     }
-    .company-name {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;  
+    .card-brand {
+      margin-bottom: 7px;
     }
-    .badge-purple {
+    .company-name {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
       color: var(--purple-main);
+      letter-spacing: 0.5px;  
+      text-transform: uppercase;
     }
     .job-title {
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--text-dark);
       margin: 8px 0;
+      line-height: 1.4;
     }
     .job-location {
       font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    .job-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 15px;
-    }
-    .tag {
-      background-color: #f1f5f9;
-      color: #475569;
-      font-size: 0.75rem;
-      padding: 3px 8px;
-      border-radius: 4px;
+      color: var(--purple-dark);
       font-weight: 600;
+      margin-bottom: 8px;
     }
-    .tag-purple {
-      background-color: var(--purple-light);  
-      color: var(--purple-main);
+    .job-snippet {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      line-height: 1.6;
     }
     .post-date {
       display: block;
@@ -276,18 +255,113 @@
     }
     .btn-details { 
       display: block;
-      background-color: var(--purple-dark);
-      color: white;
+      background: var(--purple-dark);
+      color: #ffffff;
       text-align: center;
       text-decoration: none;
       font-weight: 700;
-      padding: 12px 0;
+      padding: 12px 10px;
       font-size: 0.9rem;
-      transition: background-color 0.2s;
+      transition: background 0.2s ease;
+      cursor: pointer;
+      border: none;
+      width: 100%;
     }
     .btn-details:hover {
-      background-color: var(--purple-hover);
+      background: var(--purple-hover);
+      color: #ffffff;
     }
+
+    /* --- PÁGINA DE DETALHES DA VAGA (NOVO/BLOG STYLE) --- */
+    .job-detail-container {
+      display: none;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-card);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--purple-light);
+      color: var(--purple-main);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: all 0.2s;
+    }
+    .btn-back:hover {
+      background: var(--purple-main);
+      color: white;
+    }
+    .detail-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    .detail-company {
+      color: var(--purple-main);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+    .detail-title {
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      font-weight: 800;
+      margin: 8px 0;
+    }
+    .detail-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .detail-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #334155;
+    }
+    .detail-content h3 {
+      color: var(--purple-dark);
+      margin: 20px 0 10px 0;
+      font-size: 1.2rem;
+    }
+    .detail-content ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    .detail-content li {
+      margin-bottom: 8px;
+    }
+    .btn-apply-now {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 30px auto;
+      background: #16a34a;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-apply-now:hover {
+      background: #15803d;
+      transform: translateY(-2px);
+    }
+
     /* --- SEÇÕES INSTITUCIONAIS --- */
     .content-block {
       display: none;
@@ -348,7 +422,7 @@
       background-color: var(--purple-hover);
     }
 
-    /* --- ADS / PUBLICIDADE (AJUSTADO) --- */
+    /* --- ADS / PUBLICIDADE --- */
     .ad-container {
       display: flex;
       justify-content: center;
@@ -466,6 +540,7 @@
   <div class="disclaimer-bar">  
     <strong>Informativo Importante:</strong> Este portal é puramente informativo. Não realizamos contratações nem cobramos valores. O cadastro é gratuito nos sites oficiais.
   </div>
+
   <header>
     <div class="header-container">
       <a onclick="navigateTo('jobs')" class="logo">
@@ -475,8 +550,6 @@
         <button onclick="navigateTo('jobs')" id="btnNavJobs" class="nav-btn active">Todas as vagas</button>
         <button onclick="navigateTo('about')" id="btnNavAbout" class="nav-btn">Sobre</button>
         <button onclick="navigateTo('privacy')" id="btnNavPrivacy" class="nav-btn">Política de Privacidade</button>
-        
-        
       </nav>
     </div>
   </header>
@@ -518,103 +591,71 @@
 
   <div class="main-layout">
     <main>
-      <!-- SEÇÃO DE VAGAS -->
+      <!-- SEÇÃO DE VAGAS (LISTAGEM) -->
       <div id="jobsSection">
         <div class="list-header">
-          <h2>Vagas</h2>
-          <span class="vagas-count">Oportunidades em Destaque</span>
+          <h2>Oportunidades Recentes</h2>
+          <span class="vagas-count">Atualizado diariamente</span>
         </div>
         <div class="jobs-grid" id="jobsGrid">  
          
-        
-          <!-- Vaga: Rede D'Or - Precsencial -->
-<article class='job-card' data-title='Auxiliar Administrativo | Hospital São Rafael'>
-<div class='card-body'>
-<div class='card-brand'>
-<span class='company-name badge-purple'>Rede D&#39;Or | Hospital São Rafael</span>
-</div>
-<h3 class='job-title'>Auxiliar Administrativo</h3>
-<div class='job-location'>📍Presencial </div>
-<div class='job-tags'>
-<span class='tag tag-purple'>Salvador - BA</span>
- <span class='tag'>Pacote Office</span>
-<span class='tag'>Formação Comunicação Publicidade e Marketing</span>
-<span class='tag'>Vaga também para PcD</span>
-<span class='tag'>Inscrições até 27/09/2026</span>  
-<span class='tag'>Efetivo</span>
-</div>
-<span class='post-date'>Postada recentemente</span>
-</div>
-<a class='btn-details' href='https://rededor.gupy.io/jobs/11862253?jobBoardSource=gupy_public_page' rel='noopener noreferrer' target='_blank'>
-Ver mais detalhes
-</a>
-</article>
-        
- <!-- Vaga: Recepcionista - Ajudante de Cozinha | Hospital Aeroporto -->
-<article class='job-card' data-title='Ajudante de Cozinha | Hospital Aeroporto'>
- <div class='card-body'>
- <div class='card-brand'>
- <span class='company-name badge-purple'>Rede D&#39;Or | Hospital Aeroporto</span>  
-  </div>
- <h3 class='job-title'>Ajudante de Cozinha</h3>
- <div class='job-location'>📍Presencial </div>
- <div class='job-tags'>
-<span class='tag tag-purple'>Lauro de Freitas - BA</span>
-<span class='tag'>Efetivo</span>
- <span class='tag'>Ensino médio completo</span>
- <span class='tag'>Desejável experiência anterior na função</span>
- <span class='tag'>Inscrições até 31/12/2026</span>
- </div>
- <span class='post-date'>Postada recentemente</span>
- </div>
- <a class='btn-details' href='https://rededor.gupy.io/jobs/11880712?jobBoardSource=gupy_public_page' rel='noopener noreferrer' target='_blank'>
- Ver mais detalhes
- </a>
-</article> 
-
-<!-- Vaga 3: Assaí -->
-          <article class='job-card' data-title='assai atacadista operador caixa loja aprendiz'>
-            <div class='card-body'>
-              <div class='card-brand'>
-                <span class='company-name'>ASSAÍ ATACADISTA</span>
+          <!-- Vaga 1 : Rede D'Or - Auxiliar Admin -->
+          <article class="job-card" data-title="Auxiliar Administrativo | Hospital São Rafael">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Rede D'Or | Hospital São Rafael</span>
               </div>
-              <h3 class='job-title'>Assaí Atacadista abre 3.337 Oportunidades</h3>
-              <div class='job-location'>📍 Várias Cidades | Vagas Operacionais e RH</div>
-              <div class='job-tags'>
-                <span class='tag'>Presencial</span>
-                <span class='tag'>Operador de Caixa</span> 
-                <span class='tag'>Atendente</span>
-                <span class='tag'>Jovem Aprendiz</span>
-              </div>
-              <span class='post-date'>Postada recentemente</span>
+              <h3 class="job-title">Auxiliar Administrativo</h3>
+              <div class="job-location">📍 Salvador - BA (Presencial)</div>
+              <div class="job-snippet">Pacote Office, Formação Comunicação/Publicidade, vaga também para PcD. Inscrições até 27/09/2026.</div>
+              <span class="post-date">Publicado em 2026</span>
             </div>
-            <a class='btn-details' href='https://br.vagasproximas.com/2026/07/29/assai-atacadista-esta-com-2039-vagas-de-emprego-em-todo-o-brasil/' rel='noopener noreferrer' target='_blank'>
-              Ver mais detalhes
-            </a>
+            <button class="btn-details" onclick="openJobDetail('job-1')">Ver detalhes da vaga</button>
           </article>
 
-          <!-- Vaga 4: 0903 | Gerente de Agência - Feira de Santana/BA -->
-          <article class='job-card' data-title='0903 | Gerente de Agência - Feira de Santana/BA'>
-            <div class='card-body'>
-              <div class='card-brand'>
-                <span class='company-name'>0903 | Gerente de Agência - Feira de Santana/BA</span>
+          <!-- Vaga 2 : Rede D'Or - Ajudante de Cozinha -->
+          <article class="job-card" data-title="Ajudante de Cozinha | Hospital Aeroporto">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Rede D'Or | Hospital Aeroporto</span>  
               </div>
-              <h3 class='job-title'>0903 | Gerente de Agência - Feira de Santana/BA</h3>
-              <div class='job-location'>📍 Gerente de Agência - Feira de Santana/BA</div>
-              <div class='job-tags'>
-                <span class='tag'>Presencial</span>
-                <span class='tag'>Ensino Superior completo e MBA/Especialização completos</span>
-                <span class='tag'>Participação nos Resultados (PLR)</span>
-                <span class='tag'>Salário compatível (CLT)</span>
-              </div>
-              <span class='post-date'>Postada recentemente</span>
+              <h3 class="job-title">Ajudante de Cozinha</h3>
+              <div class="job-location">📍 Lauro de Freitas - BA (Presencial)</div>
+              <div class="job-snippet">Ensino médio completo, experiência desejável na função. Inscrições até 31/12/2026.</div>
+              <span class="post-date">Publicado em 2026</span>
             </div>
-            <a class='btn-details' href='https://sicredi.gupy.io/jobs/11887730?jobBoardSource=gupy_public_page' rel='noopener noreferrer' target='_blank'>
-              Ver mais detalhes
-            </a>
+            <button class="btn-details" onclick="openJobDetail('job-2')">Ver detalhes da vaga</button>
+          </article> 
+
+          <!-- Vaga 3: Assaí -->
+          <article class="job-card" data-title="assai atacadista operador caixa loja aprendiz">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Assaí Atacadista</span>
+              </div>
+              <h3 class="job-title">Assaí Atacadista abre 3.337 Oportunidades</h3>
+              <div class="job-location">📍 Várias Cidades | Presencial</div>
+              <div class="job-snippet">Oportunidades operacionais e de RH: Operador de Caixa, Atendente, Jovem Aprendiz.</div>
+              <span class="post-date">Publicado em 2026</span>
+            </div>
+            <button class="btn-details" onclick="openJobDetail('job-3')">Ver detalhes da vaga</button>
           </article>
 
-          <!-- BANNER DE ANÚNCIO INTERCALADO -->
+          <!-- Vaga 4: Sicredi -->
+          <article class="job-card" data-title="0903 | Gerente de Agência - Feira de Santana/BA">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Sicredi</span>
+              </div>
+              <h3 class="job-title">0903 | Gerente de Agência</h3>
+              <div class="job-location">📍 Feira de Santana - BA (Presencial)</div>
+              <div class="job-snippet">Ensino Superior completo e MBA/Especialização. Benefícios: PLR e salário compatível CLT.</div>
+              <span class="post-date">Publicado em 2026</span>
+            </div>
+            <button class="btn-details" onclick="openJobDetail('job-4')">Ver detalhes da vaga</button>
+          </article>
+
+          <!-- BANNER DE ANÚNCIO INTERCALADO NA LISTA -->
           <div class="ad-container grid-full-width">
             <div class="ad-box">
               <small>PUBLICIDADE</small>
@@ -631,98 +672,72 @@ Ver mais detalhes
             </div>
           </div>
 
-          <!-- Vaga 10: Localiza -->
- <article class='job-card' data-title='localiza administrativo atendente tecnologia salvador ba'>
- <div class='card-body'>
- <div class='card-brand'>
- <span class='company-name'>LOCALIZA </span>
- </div>
- <h3 class='job-title'>Localiza &amp; Co com 828 Vagas pelo Brasil</h3>
- <div class='job-location'>📍 Salvador - BA e todo o Brasil</div>
- <div class='job-tags'>
- <span class='tag'>Presencial</span>
- <span class='tag'>Vários cargos</span>
- <span class='tag'>Ensino médio e superior</span>
- </div>
- <span class='post-date'>Postada recentemente</span>
- </div>
- <a class='btn-details' href='https://br.vagasproximas.com/2026/07/30/localiza-co-esta-com-927-vagas-de-emprego-no-brasil/' rel='noopener noreferrer' target='_blank'>
- Ver mais detalhes
- </a>
- </article>
- 
- 
-          
-          <!-- Vaga : 8 HAPVIDA:: Auxiliar de Serviços Gerais -->
-<article class='job-card' data-title='Hapvida | Auxiliar de Serviços Gerais'>
-  <div class='card-body'>
-    <div class='card-brand'>
-      <span class='company-name badge-purple'>HAPVIDA</span>
-    </div>
-    <h3 class='job-title'>Auxiliar de Serviços Gerais</h3>
-    <div class='job-location'>🏠 Presencial</div>
-    <div class='job-tags'>
-      <span class='tag tag-purple'>Presencial</span>
-      <span class='tag'>Limpeza e Higienização</span>
-      <span class='tag'>Organização do Local</span>
-      <span class='tag'>Coleta e Descarte</span>
-      <span class='tag'>Manutenção de Suprimentos</span>
-    </div>
-    <span class='post-date'>Postada recentemente</span>
-  </div>
-  <a class='btn-details' href='https://hapvidandi.gupy.io/jobs/12384523?jobBoardSource=gupy_public_page' rel='noopener noreferrer' target='_blank'>
-    Ver mais detalhes
-  </a>
-</article>
-
-          <!-- Vaga 5.1: REDE O'DOR -->
-          <article class='job-card' data-title='helppi suporte cliente home office atendimento'>
-            <div class='card-body'>
-              <div class='card-brand'>
-                <span class='company-name badge-purple'>Auxiliar de Enfermagem | SALVADOR</span>
+          <!-- Vaga 5: Localiza -->
+          <article class="job-card" data-title="localiza administrativo atendente tecnologia salvador ba">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Localiza & Co</span>
               </div>
-              <h3 class='job-title'>Auxiliar de Enfermagem</h3>
-              <div class='job-location'>📍 Salvador - BA</div>
-              <div class='job-tags'>
-                <span class='tag tag-purple'>Presencial</span>
-                <span class='tag'>Efetivo</span>
-                <span class='tag'>Ensino médio + curso Auxiliar de Enfermagem completos</span>
-                <span class='tag'>Registro ativo no COREN</span>
-                <span class='tag'>Experiência sólida na área solicitada</span>
-              </div>
-              <span class='post-date'>Postada recentemente</span>
+              <h3 class="job-title">Localiza & Co com 828 Vagas pelo Brasil</h3>
+              <div class="job-location">📍 Salvador - BA e Brasil (Presencial)</div>
+              <div class="job-snippet">Vários cargos operacionais e administrativos. Exige Ensino Médio ou Superior.</div>
+              <span class="post-date">Publicado em 2026</span>
             </div>
-            <a class='btn-details' href='https://rededor.gupy.io/jobs/12282212?jobBoardSource=gupy_public_page' rel='noopener noreferrer' target='_blank'>
-              Ver mais detalhes
-            </a>
+            <button class="btn-details" onclick="openJobDetail('job-5')">Ver detalhes da vaga</button>
+          </article>
+          
+          <!-- Vaga 6: Hapvida -->
+          <article class="job-card" data-title="Hapvida | Auxiliar de Serviços Gerais">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Hapvida</span>
+              </div>
+              <h3 class="job-title">Auxiliar de Serviços Gerais</h3>
+              <div class="job-location">📍 Presencial</div>
+              <div class="job-snippet">Atuações em Limpeza, Higienização, Organização do local, Coleta e Descarte de Resíduos.</div>
+              <span class="post-date">Publicado em 2026</span>
+            </div>
+            <button class="btn-details" onclick="openJobDetail('job-6')">Ver detalhes da vaga</button>
           </article>
 
-          <!-- Vaga 6.1: Irmã Dulce -->
-          <article class='job-card' data-title=' CONTABILIZEI - Assistente de Atendimento'>
-  <div class='card-body'>
-    <div class='card-brand'>
-      <span class='company-name'>SELEÇÃO HOME OFFICE</span>
-    </div>
-    <h3 class='job-title'>CONTABILIZEI - Atendimento</h3>
-  <div class='job-location'>🏠 Remoto / Home Office | CLT Fixo</div>
-    <div class='job-tags'>
-       <span class='tag tag-purple'>Home Office</span>
-      <span class='tag'>Salário: Compatível com o mercado (CLT)</span>
-      <span class='tag'>Atendimento</span>
-      <span class='tag'>Ensino Superior em Administração</span>
-      <span class='tag'>Experiência call center ou atendimento por chat</span>
-      <span class='tag'>Bom domínio de digitação</span>
-    </div>
-    <span class='post-date'>Postada recentemente</span>
-  </div>
-  <a class='btn-details' href='https://br.vagasproximas.com/2026/08/18/contabilizei-contrata-assistente-de-atedimento-100-home-office/' rel='noopener noreferrer' target='_blank'>
-    Ver mais detalhes
-  </a>
-</article>
+          <!-- Vaga 7: Rede D'Or Enfermagem -->
+          <article class="job-card" data-title="Auxiliar de Enfermagem | SALVADOR">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Rede D'Or</span>
+              </div>
+              <h3 class="job-title">Auxiliar de Enfermagem</h3>
+              <div class="job-location">📍 Salvador - BA (Presencial)</div>
+              <div class="job-snippet">Ensino médio + curso de Auxiliar de Enfermagem completo. COREN ativo e experiência técnica.</div>
+              <span class="post-date">Publicado em 2026</span>
+            </div>
+            <button class="btn-details" onclick="openJobDetail('job-7')">Ver detalhes da vaga</button>
+          </article>
+
+          <!-- Vaga 8: Contabilizei -->
+          <article class="job-card" data-title="CONTABILIZEI - Assistente de Atendimento">
+            <div class="card-body">
+              <div class="card-brand">
+                <span class="company-name">Contabilizei</span>
+              </div>
+              <h3 class="job-title">Assistente de Atendimento</h3>
+              <div class="job-location">🏠 Remoto / Home Office</div>
+              <div class="job-snippet">Regime CLT Fixo. Atendimento ao cliente, Superior em Administração ou áreas afins.</div>
+              <span class="post-date">Publicado em 2026</span>
+            </div>
+            <button class="btn-details" onclick="openJobDetail('job-8')">Ver detalhes da vaga</button>
+          </article>
       
-          
         </div>
       </div>
+
+      <!-- SEÇÃO DINÂMICA DE DETALHES DA VAGA (TEXTO DO BLOG) -->
+      <section id="jobDetailSection" class="job-detail-container">
+        <button class="btn-back" onclick="navigateTo('jobs')">← Voltar para todas as vagas</button>
+        <div id="jobDetailBody">
+          <!-- O conteúdo da vaga selecionada será carregado aqui via JavaScript -->
+        </div>
+      </section>
 
       <!-- SEÇÃO SOBRE E CONTATO -->
       <section id="aboutSection" class="content-block">
@@ -866,8 +881,184 @@ Ver mais detalhes
   </footer>
 
   <script>
+    // --- BANCO DE DADOS LOCAL DAS VAGAS (TEXTOS EXPLICATIVOS DO BLOG) ---
+    const jobsData = {
+      'job-1': {
+        company: "Rede D'Or | Hospital São Rafael",
+        title: "Auxiliar Administrativo",
+        location: "📍 Salvador - BA (Presencial)",
+        date: "Publicado em 2026",
+        link: "https://rededor.gupy.io/jobs/11862253?jobBoardSource=gupy_public_page",
+        description: `
+          <h3>Descrição da Oportunidade</h3>
+          <p class="text-body">A Rede D'Or São Luiz está contratando Auxiliar Administrativo para atuar no Hospital São Rafael em Salvador - BA. Buscamos profissionais comprometidos e organizados para integrar nossa equipe técnica e operacional.</p>
+          
+          <h3>Principais Atividades</h3>
+          <ul class="text-list">
+            <li>Prestar atendimento ao cliente e suporte às rotinas administrativas.</li>
+            <li>Organizar documentos, arquivos e planilhas de controle.</li>
+            <li>Atender chamadas telefônicas e realizar direcionamento correto de solicitações.</li>
+            <li>Apoiar o setor na atualização de cadastros e relatórios diários.</li>
+          </ul>
+
+          <h3>Requisitos Exigidos</h3>
+          <ul class="text-list">
+            <li>Ensino Médio Completo ou Cursando Ensino Superior em Comunicação, Publicidade ou Áreas Afins.</li>
+            <li>Conhecimento intermediário no Pacote Office (Word, Excel).</li>
+            <li>Boa comunicação verbal e escrita.</li>
+            <li>Vaga também disponível para Pessoas com Deficiência (PcD).</li>
+          </ul>
+
+          <h3>Inscrições</h3>
+          <p class="text-body">As inscrições estão abertas até o dia <strong>27/09/2026</strong> diretamente no portal de carreiras da empresa.</p>
+        `
+      },
+      'job-2': {
+        company: "Rede D'Or | Hospital Aeroporto",
+        title: "Ajudante de Cozinha",
+        location: "📍 Lauro de Freitas - BA (Presencial)",
+        date: "Publicado em 2026",
+        link: "https://rededor.gupy.io/jobs/11880712?jobBoardSource=gupy_public_page",
+        description: `
+          <h3>Descrição da Oportunidade</h3>
+          <p class="text-body">O Hospital Aeroporto (Rede D'Or) seleciona Ajudante de Cozinha para atuar no setor de Nutrição e Dietética. O profissional atuará no preparo, higienização e organização das refeições hospitalares.</p>
+          
+          <h3>Principais Atividades</h3>
+          <ul class="text-list">
+            <li>Auxiliar no pré-preparo de alimentos e refeições dos pacientes e refeitório.</li>
+            <li>Higienizar utensílios, equipamentos e áreas de trabalho.</li>
+            <li>Organizar estoque de alimentos respeitando normas de vigilância sanitária.</li>
+          </ul>
+
+          <h3>Requisitos</h3>
+          <ul class="text-list">
+            <li>Ensino Médio Completo.</li>
+            <li>Experiência prévia na área de cozinha hospitalar ou comercial será um diferencial.</li>
+            <li>Disponibilidade de horário para escala de trabalho hospitalar.</li>
+          </ul>
+
+          <h3>Inscrições</h3>
+          <p class="text-body">Inscrições abertas até <strong>31/12/2026</strong> através da plataforma oficial.</p>
+        `
+      },
+      'job-3': {
+        company: "Assaí Atacadista",
+        title: "Assaí Atacadista abre 3.337 Oportunidades pelo Brasil",
+        location: "📍 Várias Cidades | Presencial",
+        date: "Publicado em 2026",
+        link: "https://assai.gupy.io/",
+        description: `
+          <h3>Sobre as Vagas no Assaí Atacadista</h3>
+          <p class="text-body">O Assaí Atacadista anunciou a abertura de mais de 3.300 vagas de emprego em diversas unidades distribuídas pelo Brasil. Existem posições operacionais, administrativas e programas de primeiro emprego.</p>
+          
+          <h3>Cargos Disponíveis</h3>
+          <ul class="text-list">
+            <li>Operador de Caixa / Atendente de Loja</li>
+            <li>Auxiliar de Cozinha / Açougueiro / Padeiro</li>
+            <li>Fiscal de Prevenção de Perdas</li>
+            <li>Jovem Aprendiz e Estagiários</li>
+          </ul>
+
+          <h3>Benefícios Oferecidos</h3>
+          <p class="text-body">A empresa oferece assistência médica e odontológica, vale-transporte, refeição no local, seguro de vida e plano de carreira estruturado.</p>
+        `
+      },
+      'job-4': {
+        company: "Sicredi",
+        title: "0903 | Gerente de Agência",
+        location: "📍 Feira de Santana - BA (Presencial)",
+        date: "Publicado em 2026",
+        link: "https://sicredi.gupy.io/jobs/11887730?jobBoardSource=gupy_public_page",
+        description: `
+          <h3>Descrição do Cargo</h3>
+          <p class="text-body">O Sicredi está selecionando Gerente de Agência para atuar em Feira de Santana/BA. Buscamos um líder para coordenar equipes, gerenciar carteira de associados e impulsionar novos negócios.</p>
+
+          <h3>Requisitos da Vaga</h3>
+          <ul class="text-list">
+            <li>Ensino Superior Completo e Pós-Graduação/MBA em gestão ou finanças.</li>
+            <li>Certificação Anbima ativa (CPA-10, CPA-20 ou CEA).</li>
+            <li>Experiência comprovada em gestão de agências bancárias ou cooperativas.</li>
+          </ul>
+        `
+      },
+      'job-5': {
+        company: "Localiza & Co",
+        title: "Localiza & Co com 828 Vagas pelo Brasil",
+        location: "📍 Salvador - BA e Brasil (Presencial)",
+        date: "Publicado em 2026",
+        link: "https://localiza.gupy.io/",
+        description: `
+          <h3>Oportunidades na Localiza</h3>
+          <p class="text-body">A Localiza & Co está com processos seletivos abertos para contratação de mais de 800 colaboradores em diversas regiões do Brasil, incluindo Salvador e região metropolitana.</p>
+          
+          <h3>Áreas de Atuação</h3>
+          <ul class="text-list">
+            <li>Atendimento ao Cliente e Vendas</li>
+            <li>Higienização e Preparação de Veículos</li>
+            <li>Auxiliar Administrativo e Financeiro</li>
+            <li>Tecnologia e Gestão de Operações</li>
+          </ul>
+        `
+      },
+      'job-6': {
+        company: "Hapvida",
+        title: "Auxiliar de Serviços Gerais",
+        location: "📍 Presencial",
+        date: "Publicado em 2026",
+        link: "https://hapvidandi.gupy.io/jobs/12384523?jobBoardSource=gupy_public_page",
+        description: `
+          <h3>Descrição da Vaga</h3>
+          <p class="text-body">O Grupo Hapvida NotreDame Intermédica está contratando Auxiliar de Serviços Gerais para atuar em suas unidades hospitalares e clínicas.</p>
+
+          <h3>Atividades principais</h3>
+          <ul class="text-list">
+            <li>Higienização e limpeza de ambientes hospitalares e administrativos.</li>
+            <li>Coleta e descarte adequado de resíduos seguindo diretrizes de segurança.</li>
+            <li>Manutenção da organização dos setores.</li>
+          </ul>
+        `
+      },
+      'job-7': {
+        company: "Rede D'Or",
+        title: "Auxiliar de Enfermagem",
+        location: "📍 Salvador - BA (Presencial)",
+        date: "Publicado em 2026",
+        link: "https://rededor.gupy.io/jobs/12282212?jobBoardSource=gupy_public_page",
+        description: `
+          <h3>Descrição da Oportunidade</h3>
+          <p class="text-body">A Rede D'Or em Salvador/BA abre processo seletivo para o cargo de Auxiliar de Enfermagem para integrar a equipe assistencial do hospital.</p>
+
+          <h3>Requisitos Exigidos</h3>
+          <ul class="text-list">
+            <li>Curso concluído de Auxiliar de Enfermagem.</li>
+            <li>Inscrição e regularidade ativa junto ao COREN-BA.</li>
+            <li>Experiência em internação ou pronto atendimento hospitalar.</li>
+          </ul>
+        `
+      },
+      'job-8': {
+        company: "Contabilizei",
+        title: "Assistente de Atendimento (100% Home Office)",
+        location: "🏠 Remoto / Home Office",
+        date: "Publicado em 2026",
+        link: "https://br.vagasproximas.com/2026/08/18/contabilizei-contrata-assistente-de-atedimento-100-home-office/",
+        description: `
+          <h3>Descrição do Cargo</h3>
+          <p class="text-body">A Contabilizei está contratando Assistente de Atendimento para trabalho 100% remoto. O profissional prestará suporte aos clientes em questões de rotina contábil e uso da plataforma.</p>
+
+          <h3>Requisitos</h3>
+          <ul class="text-list">
+            <li>Superior Cursando ou Completo em Administração, Contabilidade ou áreas correlatas.</li>
+            <li>Excelente comunicação escrita e empatia no atendimento.</li>
+            <li>Estrutura de internet e ambiente adequado para home office.</li>
+          </ul>
+        `
+      }
+    };
+
     // --- SISTEMA DE NAVEGAÇÃO ENTRE PÁGINAS ---
     const jobsSection = document.getElementById('jobsSection');
+    const jobDetailSection = document.getElementById('jobDetailSection');
     const aboutSection = document.getElementById('aboutSection');
     const privacySection = document.getElementById('privacySection');
     const heroSection = document.getElementById('heroSection');
@@ -877,9 +1068,11 @@ Ver mais detalhes
 
     function navigateTo(target) {
       jobsSection.style.display = 'none';
+      jobDetailSection.style.display = 'none';
       aboutSection.style.display = 'none';
       privacySection.style.display = 'none';
       heroSection.style.display = 'none';
+      
       btnNavJobs.classList.remove('active');
       btnNavAbout.classList.remove('active');
       btnNavPrivacy.classList.remove('active');  
@@ -898,6 +1091,56 @@ Ver mais detalhes
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // --- FUNÇÃO PARA ABRIR O TEXTO COMPLETO DA VAGA ---
+    function openJobDetail(jobKey) {
+      const data = jobsData[jobKey];
+      if (!data) return;
+
+      const detailBody = document.getElementById('jobDetailBody');
+      detailBody.innerHTML = `
+        <div class="detail-header">
+          <span class="detail-company">${data.company}</span>
+          <h1 class="detail-title">${data.title}</h1>
+          <div class="detail-meta">
+            <span>${data.location}</span> • 
+            <span>${data.date}</span>
+          </div>
+        </div>
+        
+        <div class="ad-container">
+          <div class="ad-box">
+            <small>PUBLICIDADE</small>
+            <script>
+              atOptions = {
+                'key' : 'cec4c9b1c0036a26016140e960d2cc93',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+              };
+            <\/script>
+            <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"><\/script>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          ${data.description}
+        </div>
+
+        <a href="${data.link}" target="_blank" rel="noopener noreferrer" class="btn-apply-now">
+          👉 CANDIDATAR-SE NO SITE OFICIAL
+        </a>
+      `;
+
+      jobsSection.style.display = 'none';
+      heroSection.style.display = 'none';
+      aboutSection.style.display = 'none';
+      privacySection.style.display = 'none';
+      jobDetailSection.style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     // --- SISTEMA DE BUSCA E FILTRO ---
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('searchInput');
@@ -908,6 +1151,12 @@ Ver mais detalhes
       function filterJobs() {
         const queryTerm = searchInput ? searchInput.value.trim().toLowerCase() : "";
         const queryLoc = locationInput ? locationInput.value.trim().toLowerCase() : "";
+        
+        // Garante que se estivesse na página de detalhes, volte para a lista para ver a busca
+        if (jobDetailSection.style.display === 'block') {
+          navigateTo('jobs');
+        }
+
         jobCards.forEach(card => {
           const searchData = card.getAttribute('data-title').toLowerCase();
           const cardContent = card.innerText.toLowerCase();  
