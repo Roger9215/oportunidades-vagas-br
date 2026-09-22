@@ -424,6 +424,21 @@
     }
 
     /* --- ADS / PUBLICIDADE --- */
+    /* --- ESTILO PARA ANÚNCIOS LADO A LADO --- */
+    .ads-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      max-width: 1200px;
+      margin: 15px auto;
+      padding: 0 20px;
+    }
+    @media (max-width: 768px) {
+      .ads-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .ad-container {
       display: flex;
       justify-content: center;
@@ -664,9 +679,9 @@
          
 
         <!--FIM CAPA VAGA 1 SETOR-->
-
-          <!-- BANNER DE ANÚNCIO INTERCALADO NA LISTA -->
-          <div class="ad-container grid-full-width">
+<!-- BLOCO DE ANÚNCIOS LADO A LADO (ADSTERRA + HILLTOPADS) -->
+          <div class="ads-row grid-full-width">
+            <!-- Anúncio Adsterra -->
             <div class="ad-box">
               <small>PUBLICIDADE</small>
               <script>
@@ -679,6 +694,23 @@
                 };
               </script>
               <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
+            </div>
+
+            <!-- Anúncio BannerEmpregos (HilltopAds) -->
+            <div class="ad-box">
+              <small>PUBLICIDADE</small>
+              <script>
+(function(mnf){
+var d = document,
+    s = d.createElement('script'),
+    l = d.currentScript || d.scripts[d.scripts.length - 1];
+s.settings = mnf || {};
+s.src = "\/\/untimely-hello.com\/bqX\/V.sqdcG\/lU0RYFWRc_\/Meem-9xu\/ZuUJlek_PBTQcT0wNOD\/gxwXORDUEVtIN\/zbQE0ZO\/DBAY4RNUQn";
+s.async = true;
+s.referrerPolicy = 'no-referrer-when-downgrade';
+l.parentNode.insertBefore(s, l);
+})({})
+</script>
             </div>
           </div>
 
