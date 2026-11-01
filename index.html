@@ -483,6 +483,11 @@
     .nav-wrap{background:var(--roxo)}.main-nav{max-width:1180px;margin:auto;padding:0 22px;display:flex;flex-wrap:wrap;gap:0}.main-nav a{color:#fff;font-weight:700;font-size:14px;padding:13px 17px;display:block}.main-nav a:hover{background:var(--roxo-escuro);text-decoration:none}
     .hero{max-width:1180px;margin:24px auto 0;padding:0 22px}.hero-box{background:linear-gradient(120deg,var(--roxo),#8f4ba1);color:#fff;border-radius:14px;padding:28px 30px;box-shadow:0 10px 24px rgba(100,37,121,.15)}.hero-box h1{margin:0 0 7px;font-size:28px}.hero-box p{margin:0;max-width:720px;color:#f9f1fc}
     .layout{max-width:1180px;margin:24px auto;padding:0 22px;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:28px}.content-area{min-width:0}.section-title{font-size:21px;margin:0 0 16px;color:var(--roxo);border-left:5px solid var(--roxo);padding-left:12px}
+    .job-inline-promo{width:100%;max-width:none;margin:0;padding:16px;box-sizing:border-box}
+    .job-inline-promo img{max-width:260px}
+    .job-monetized-ad{width:100%;min-height:90px;margin:0;padding:12px;background:#fff;border:1px solid var(--borda);border-radius:12px;box-sizing:border-box;text-align:center;overflow:hidden}
+    .job-monetized-ad small{display:block;margin-bottom:6px;color:var(--cinza);font-size:11px;font-weight:700;letter-spacing:.5px}
+    .job-monetized-ad iframe{max-width:100%;border:0}
     .jobs-grid{display:grid;grid-template-columns:1fr;gap:20px}.feed-card-image{width:100%;height:240px;object-fit:cover;display:block;background:#f5eff8}.feed-card-image-wrap{width:100%;overflow:hidden;border-bottom:1px solid var(--borda);background:#f5eff8}.job-card{background:#fff;border:1px solid var(--borda);border-radius:12px;margin:0;box-shadow:0 4px 13px rgba(66,21,84,.06);overflow:hidden;display:flex;flex-direction:column}.job-card .card-body{padding:20px}.job-card .card-brand{margin-bottom:7px}.job-card .company-name{display:inline-block;font-size:12px;font-weight:800;color:var(--roxo);letter-spacing:.5px;text-transform:uppercase}.job-card .job-title{font-size:22px;line-height:1.3;margin:8px 0}.job-card .job-title a{color:var(--roxo-escuro)}.job-card .job-snippet{font-size:15px;color:var(--cinza);margin-bottom:15px;line-height:1.6}.job-card .post-date{display:block;font-size:12px;color:#94a3b8}.job-card .btn-details{display:block;background:var(--roxo);color:#fff;text-align:center;text-decoration:none;font-weight:700;padding:12px 10px;font-size:14px}.job-card .btn-details:hover{background:var(--roxo-escuro);text-decoration:none}.blogger-native{display:none!important}.feed-loading{padding:28px;text-align:center;color:var(--cinza);background:#fff;border:1px solid var(--borda);border-radius:12px}.post-outer{background:#fff;border:1px solid var(--borda);border-radius:12px;margin:0;padding:22px;box-shadow:0 4px 13px rgba(66,21,84,.04)}.post-title{font-size:22px;line-height:1.25;margin:0 0 8px}.post-title a{color:var(--roxo-escuro)}.post-header-line{color:var(--cinza);font-size:12px;margin-bottom:12px}.post-body{font-size:15px}.post-body img{max-width:100%;height:auto!important}.post-body .separator{max-width:100%;overflow:hidden}.post-footer{border-top:1px solid var(--borda);margin-top:16px;padding-top:12px;font-size:13px}
     .sidebar-box{background:#fff;border:1px solid var(--borda);border-radius:12px;padding:18px;margin-bottom:18px;box-shadow:0 4px 13px rgba(66,21,84,.04)}.sidebar-box h2,.sidebar-box h3{font-size:17px;color:var(--roxo);margin:0 0 12px;border-bottom:2px solid var(--roxo-claro);padding-bottom:8px}.sidebar-box p{font-size:14px;margin:8px 0}.contact-link{display:block;padding:8px 0;border-bottom:1px solid #f1eaf4;word-break:break-word}.label-size{display:inline-block;background:var(--roxo-claro);border-radius:18px;padding:6px 10px;margin:3px;font-size:12px}.label-size:hover{background:#e9d9ef;text-decoration:none}
     .footer{background:var(--roxo-escuro);color:#eee;margin-top:32px}.footer-inner{max-width:1180px;margin:auto;padding:28px 22px;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.footer a{color:#fff}.footer h3{margin:0 0 8px;color:#fff;font-size:16px}.footer p{margin:4px 0;font-size:13px}.copyright{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:14px 22px;font-size:12px;color:#ddd}.follow-blog-button{display:inline-block;background:#fff;color:var(--roxo-escuro)!important;border-radius:22px;padding:10px 16px;font-size:13px;font-weight:700;margin-top:8px}.follow-blog-button:hover{background:#f1e6f5;text-decoration:none}.footer-stats{min-width:210px}.footer-stats h3{color:#fff;font-size:16px;margin:0 0 8px}.footer-stats p{color:#eee;font-size:13px}
@@ -767,24 +772,6 @@ footer{background:#421554;color:#eee;margin-top:32px}
         <p>Filmes, séries, esportes, variedades e muito mais. Fale conosco pelo WhatsApp e saiba mais.</p>
         <a href="https://wa.me/message/LWLXRGCHSQYQI1" target="_blank" rel="noopener noreferrer">Fale agora pelo WhatsApp</a>
       </div>
-      <!-- WIDGET DE ANÚNCIO LATERAL (300x250) -->
-      <div class="widget widget-ad">
-        <div class="ad-container">
-          <div class="ad-box">
-            <small>PUBLICIDADE</small>
-            <script>
-              atOptions = {
-                'key' : 'cec4c9b1c0036a26016140e960d2cc93',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-              };
-            </script>
-            <script src="https://www.highperformanceformat.com/cec4c9b1c0036a26016140e960d2cc93/invoke.js"></script>
-          </div>
-        </div>
-      </div>
       <script>
 (function(nfrjyz){
 var d = document,
@@ -859,6 +846,11 @@ l.parentNode.insertBefore(s, l);
       const grid = document.getElementById('jobsGrid');
       const count = document.querySelector('.vagas-count');
       let finished = false;
+      let monetizedAdIndex = 0;
+      const monetizedAdLoaders = [
+        '(function(rwwdgc){var d=document,s=d.createElement("script"),l=document.currentScript||document.scripts[document.scripts.length-1];s.settings=rwwdgc||{};s.src="//untimely-hello.com/bDXnVGs.dUG/l/0/YjW/cv/EeLmy9/u/ZPUylUknPMThcg0sNCD/gCwAOOD_ETtdNpzgQY0VOODPAf4SNKQQ";s.async=true;s.referrerPolicy="no-referrer-when-downgrade";l.parentNode.insertBefore(s,l);})({});',
+        '(function(rwwdgc){var d=document,s=d.createElement("script"),l=document.currentScript||document.scripts[document.scripts.length-1];s.settings=rwwdgc||{};s.src="//untimely-hello.com/bjX.V-sQdAG/lc0_YkWQc_/peBmc9AuOZbUwlmkkPKTFcv0CNUzeEDxBOyDyk/tsNTzuQI3TMfTMED5AMawN";s.async=true;s.referrerPolicy="no-referrer-when-downgrade";l.parentNode.insertBefore(s,l);})({});'
+      ];
       const timeout = window.setTimeout(showError, 12000);
 
       function showError() {
@@ -979,6 +971,27 @@ l.parentNode.insertBefore(s, l);
           button.textContent = 'Ver vaga e detalhes no blog';
           card.appendChild(button);
           grid.appendChild(card);
+
+          // Carrega um dos dois códigos monetizados fornecidos, alternadamente.
+          const monetizedAd = document.createElement('div');
+          monetizedAd.className = 'job-monetized-ad';
+          monetizedAd.setAttribute('aria-label', 'Publicidade monetizada');
+          monetizedAd.innerHTML = '<small>PUBLICIDADE</small>';
+          const monetizedLoader = document.createElement('script');
+          monetizedLoader.text = monetizedAdLoaders[monetizedAdIndex % monetizedAdLoaders.length];
+          monetizedAdIndex += 1;
+          monetizedAd.appendChild(monetizedLoader);
+          grid.appendChild(monetizedAd);
+          // Alterna os anúncios próprios (streaming, livros e culinária)
+          // depois de cada vaga, sem reinvocar a rede externa de publicidade.
+          const promoCards = document.querySelectorAll('.sidebar > .smart-tv-ad, .sidebar > .livro-anuncio');
+          if (promoCards.length) {
+            const promo = promoCards[(grid.querySelectorAll('.job-card').length - 1) % promoCards.length].cloneNode(true);
+            promo.classList.add('job-inline-promo');
+            promo.setAttribute('aria-label', 'Publicidade');
+            grid.appendChild(promo);
+          }
+
         });
 
         if (count) count.textContent = entries.length + (entries.length === 1 ? ' publicação do blog' : ' publicações do blog');
